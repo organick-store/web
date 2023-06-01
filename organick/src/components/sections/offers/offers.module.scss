@@ -1,0 +1,27 @@
+@import '../../../styles/main/colors.scss';
+
+.offers {
+  background-color: $color-primary-blue;
+  padding: 20rem 0;
+
+  &-subheading {
+    margin-bottom: 0.8rem;
+  }
+
+  &-heading {
+    margin-bottom: 5rem;
+    color: $color-white;
+  }
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    justify-content: center;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 37em) {
+  .offers {
+    display: none;
+  }
+}

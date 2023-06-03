@@ -10,22 +10,27 @@ export const Input = ({
   onBlur,
   invalid,
   value,
+  warn,
 }) => {
   return (
-    <label className={inptStyles.label}>
-      {label}
-      <input
-        type={inptType}
-        placeholder={inptPlaceholder}
-        className={classNames(inptStyles.input, {
-          [inptStyles.invalid]: invalid,
-        })}
-        onChange={onChange}
-        onBlur={onBlur}
-        value={value}
-        required
-      />
-    </label>
+    // <>
+      <label className={inptStyles.label}>
+        {label}
+        {invalid && <span className={inptStyles.warn}>{warn}</span>}
+        <input
+          type={inptType}
+          placeholder={inptPlaceholder}
+          className={classNames(inptStyles.input, {
+            [inptStyles.invalid]: invalid,
+          })}
+          onChange={onChange}
+          onBlur={onBlur}
+          value={value}
+          required
+        />
+      </label>
+     // {/* <span className={inptStyles.warn}>{warn}</span> */}
+    //{/* </> */}
   );
 };
 

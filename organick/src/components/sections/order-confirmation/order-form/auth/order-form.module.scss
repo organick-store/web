@@ -1,15 +1,24 @@
-@import '../../../../styles/main/colors.scss';
+@import '../../../../../styles/main/colors.scss';
 
 .form {
   &__main {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(435px, 1fr));
     gap: 5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 2.5rem;
   }
   &-button {
     margin: 0 auto;
-    margin-top: 11rem;
+    margin-top: 3em;
+  }
+  &-title {
+    text-align: center;
+    margin-bottom: 6rem;
+    font-size: 5rem;
+
+  }
+  .login-link {
+    color: $color-primary-green;
   }
 }
 @media (max-width: 44em) {
@@ -20,6 +29,5 @@
     &-button {
       margin-top: 4rem;
     }
-    
   }
 }

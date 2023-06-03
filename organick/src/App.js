@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SuccessBanner from './components/UI/banners/success-banner/success-banner';
 import NotFound from './pages/not-found/not-found';
 import ScrollToTop from './pages/scrollToTop';
+import Login from './components/sections/order-confirmation/order-form/auth/login/login';
+import Form from './components/sections/order-confirmation/order-form/auth/order-form';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             <Route exact path='/' element={<MainBody />} />
             <Route exact path='/cart' element={<CartBody />} />
             <Route exact path='/success' element={<SuccessBanner />} />
+            <Route exact path='/signup' element={<Form />} />
+            <Route exact path='/signin' element={<Login />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </div>

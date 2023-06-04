@@ -8,7 +8,7 @@ import WidthContainer from '../../../UI/WidthContainer/container';
 import ProductQuantityInput from '../product-card/product-quantity-input/input';
 import { CSSTransition } from 'react-transition-group';
 import { useDispatch } from 'react-redux';
-import { addItemToCart } from '../../../../redux/productsSlice';
+import { addItemToCart } from '../../../../redux/cartSlice';
 import classNames from 'classnames';
 import ProductImg from '../product-card/product-image/product-image';
 

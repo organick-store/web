@@ -8,11 +8,10 @@ import useInputValidation, {
 } from '../../../../form-validation/form-validation';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart } from '../../../../../redux/productsSlice';
-// import { collection, addDoc } from 'firebase/firestore';
-// import { db } from '../../../../db/firebase';
+import { clearCart } from '../../../../../redux/cartSlice';
 import { Paragraph, Subheading } from '../../../../UI/Typography/typography';
 import AuthService from '../../../../../services/AuthService';
+import { registration } from '../../../../../redux/userSlice';
 
 const Form = ({ bill }) => {
   const navigate = useNavigate();
@@ -20,6 +19,7 @@ const Form = ({ bill }) => {
   const productsData = useSelector((state) => state.cart.products).map(
     ({ url, ...info }) => info
   );
+  
 
   const name = useInputValidation(validators.nameValidator);
   const email = useInputValidation(validators.emailValidator);
@@ -51,8 +51,7 @@ const Form = ({ bill }) => {
     }
     resetForm();
     dispatch(clearCart());
-    const res = await AuthService.registration(name.value, email.value, password.value);
-    console.log(res);
+    dispatch(registration(name.value, email.value, password.value));
     navigate('/success');
   };
 

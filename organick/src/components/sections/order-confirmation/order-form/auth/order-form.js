@@ -12,6 +12,7 @@ import { clearCart } from '../../../../../redux/productsSlice';
 // import { collection, addDoc } from 'firebase/firestore';
 // import { db } from '../../../../db/firebase';
 import { Paragraph, Subheading } from '../../../../UI/Typography/typography';
+import AuthService from '../../../../../services/AuthService';
 
 const Form = ({ bill }) => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const Form = ({ bill }) => {
   const phone = useInputValidation(validators.phoneValidator);
   const address = useInputValidation(validators.addressValidator);
   const password = useInputValidation(validators.passwordValidator);
+  const retypePassword = useInputValidation(validators.passwordValidator);
 
   const resetForm = () => {
     name.reset();
@@ -32,6 +34,7 @@ const Form = ({ bill }) => {
     phone.reset();
     address.reset();
     password.reset();
+    retypePassword.reset();
   };
 
   const submitHandler = async (event) => {
@@ -41,12 +44,15 @@ const Form = ({ bill }) => {
       !email.isValid ||
       !phone.isValid ||
       !address.isValid ||
-      !password.isValid
+      !password.isValid ||
+      !retypePassword.isValid
     ) {
       return;
     }
     resetForm();
     dispatch(clearCart());
+    const res = await AuthService.registration(name.value, email.value, password.value);
+    console.log(res);
     navigate('/success');
   };
 
@@ -98,11 +104,20 @@ const Form = ({ bill }) => {
           <Input
             invalid={!password.isValid && password.isTouched}
             value={password.value}
-            label={'Password(at)*'}
+            label={'Password(at least 8 characters)*'}
             inptType={'password'}
             onChange={password.valueChangeHandler}
             onBlur={password.inputBlurHandler}
             warn={'Enter valid password'}
+          />
+          <Input
+            invalid={retypePassword.value !== password.value && retypePassword.isTouched}
+            value={retypePassword.value}
+            label={'Retype password*'}
+            inptType={'password'}
+            onChange={retypePassword.valueChangeHandler}
+            onBlur={retypePassword.inputBlurHandler}
+            warn={'Retyped password does not match the entered one entered'}
           />
         </div>
         <Paragraph>

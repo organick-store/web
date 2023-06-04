@@ -7,7 +7,9 @@ export const userSlice = createSlice({
   initialState: initialUserState,
   reducers: {
     setUser(state, action) {
-      state.name = action.payload.name
+      if (action.payload.name) {
+        state.name = action.payload.name
+      }
       state.email = action.payload.email;
     },
     setAuth(state, action) {
@@ -22,8 +24,10 @@ export const login = (email, password) => async (dispatch) => {
   try {
     const response = await AuthService.login(email, password);
     localStorage.setItem('token', response.data.token);
-    dispatch(setAuth(true));
-    dispatch(setUser(response.data.email));
+    if (response.data.status === 'success') {
+      dispatch(setAuth(true));
+      dispatch(setUser({email}));
+    }
   } catch (e) {
     console.log(e.response?.data?.message);
   }
@@ -33,8 +37,10 @@ export const registration = (name, email, password) => async (dispatch) => {
   try {
     const response = await AuthService.registration(name, email, password);
     localStorage.setItem('token', response.data.token);
-    dispatch(setAuth(true));
-    dispatch(setUser(response.data.email));
+    if (response.data.status === 'success') {
+      dispatch(setAuth(true));
+      dispatch(setUser({email, name}));
+    }
   } catch (e) {
     console.log(e.response?.data?.message);
   }

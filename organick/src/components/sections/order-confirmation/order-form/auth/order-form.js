@@ -19,7 +19,6 @@ const Form = ({ bill }) => {
   const productsData = useSelector((state) => state.cart.products).map(
     ({ url, ...info }) => info
   );
-  
 
   const name = useInputValidation(validators.nameValidator);
   const email = useInputValidation(validators.emailValidator);
@@ -50,9 +49,8 @@ const Form = ({ bill }) => {
       return;
     }
     resetForm();
-    dispatch(clearCart());
+    // dispatch(clearCart());
     dispatch(registration(name.value, email.value, password.value));
-    navigate('/success');
   };
 
   return (
@@ -110,7 +108,10 @@ const Form = ({ bill }) => {
             warn={'Enter valid password'}
           />
           <Input
-            invalid={retypePassword.value !== password.value && retypePassword.isTouched}
+            invalid={
+              retypePassword.value !== password.value &&
+              retypePassword.isTouched
+            }
             value={retypePassword.value}
             label={'Retype password*'}
             inptType={'password'}
@@ -130,7 +131,7 @@ const Form = ({ bill }) => {
           className={styles['form-button']}
           onClick={submitHandler}
         >
-          Confirm
+          Register
         </Button>
       </form>
     </WidthContainer>

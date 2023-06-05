@@ -9,9 +9,14 @@ export default class AuthService {
     return $api.post('/signup', {name, email, password });
   }
 
+  static async activate(token) {
+    return $api.put(`/confirm-email/${token}`);
+  }
+
   static async refresh(token) {
     return $api.put(`/refresh/${token}`);
   }
+
   // static async logout() {
   //   return $api.post('/logout');
   // }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input } from '../form-input/form-input';
 import WidthContainer from '../../../../UI/WidthContainer/container';
 import styles from './order-form.module.scss';
@@ -15,6 +15,12 @@ import { registration } from '../../../../../redux/userSlice';
 const Form = ({ bill }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isSubmitButtonClicked, setIsSubmitButtonClicked] = useState(false);
+
+  const submitButtonClickHandler = () => {
+    setIsSubmitButtonClicked((prev) => !prev);
+  }
+
   const productsData = useSelector((state) => state.cart.products).map(
     ({ url, ...info }) => info
   );
@@ -35,6 +41,7 @@ const Form = ({ bill }) => {
     retypePassword.reset();
   };
 
+  let responseMessage;
   const submitHandler = async (event) => {
     event.preventDefault();
     if (
@@ -48,9 +55,10 @@ const Form = ({ bill }) => {
       return;
     }
     resetForm();
+    submitButtonClickHandler();
     // dispatch(clearCart());
-    const res = dispatch(registration(name.value, email.value, password.value));
-    if (res.message) console.log('PABEDA');
+    const {message} = await dispatch(registration(name.value, email.value, password.value));
+    responseMessage = message;
   };
 
   return (
@@ -133,6 +141,7 @@ const Form = ({ bill }) => {
         >
           Register
         </Button>
+        {responseMessage && <Paragraph>responseMessage</Paragraph>}
       </form>
     </WidthContainer>
   );

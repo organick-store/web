@@ -9,11 +9,13 @@ import { Input } from '../../form-input/form-input';
 import Button from '../../../../../UI/Button/Button';
 import { login } from '../../../../../../redux/userSlice';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const dispatch = useDispatch();
   const email = useInputValidation(validators.emailValidator);
   const password = useInputValidation(validators.passwordValidator);
+  const navigate = useNavigate();
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -23,6 +25,7 @@ const Login = () => {
     resetForm();
     // dispatch(clearCart());
     dispatch(login(email.value, password.value));
+    navigate('/');
   };
 
   const resetForm = () => {

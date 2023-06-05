@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'; 
+import { useEffect } from 'react'; 
 import { useDispatch, useSelector } from 'react-redux';
 import { refresh } from '../../redux/userSlice';
 
@@ -11,7 +11,7 @@ import { refresh } from '../../redux/userSlice';
     if (!user.isAuth) {
       dispatch(refresh(token));
     }
-  }, []);
+  }, [dispatch, user.isAuth, token]);
 
  } 
 

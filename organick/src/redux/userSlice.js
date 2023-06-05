@@ -71,6 +71,20 @@ export const refresh = () => async (dispatch) => {
   }
 };
 
+export const activate = (token) => async (dispatch) => {
+  try {
+    if (!token) return;
+    const response = await AuthService.activate(token);
+    console.log(response);
+    if (response.data.status === 'Success') {
+      return {message: response.data.message}
+    }
+    return {message: response.data.message}
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 // export const logout = () => async (dispatch) => {
 //   try {
 //     await AuthService.logout();

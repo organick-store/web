@@ -10,6 +10,7 @@ import ScrollToTop from './pages/scrollToTop';
 import Login from './components/sections/order-confirmation/order-form/auth/login/login';
 import Form from './components/sections/order-confirmation/order-form/auth/order-form';
 import CheckAuth from './components/checkAuth/checkAuth';
+import ActivateAccount from './components/activateAccount/activateAccount';
 
 function App() {
   CheckAuth();
@@ -26,6 +27,7 @@ function App() {
             <Route exact path='/success' element={<SuccessBanner />} />
             <Route exact path='/signup' element={<Form />} />
             <Route exact path='/signin' element={<Login />} />
+            <Route path='/confirmemail/:token' element={<ActivateAccount />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </div>

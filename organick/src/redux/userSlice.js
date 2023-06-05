@@ -85,15 +85,14 @@ export const activate = (token) => async (dispatch) => {
   }
 };
 
-// export const logout = () => async (dispatch) => {
-//   try {
-//     await AuthService.logout();
-//     localStorage.removeItem('token');
-//     dispatch(setAuth(false));
-//     dispatch(setUser({name: '', email: ''}));
-//   } catch (e) {
-//     console.log(e.response?.data?.message);
-//   }
-// };
+export const logout = () => async (dispatch) => {
+  try {
+    localStorage.removeItem('token');
+    dispatch(setAuth(false));
+    dispatch(setUser({name: '', email: ''}));
+  } catch (e) {
+    console.log(e.response?.data?.message);
+  }
+};
 
 export const userReducer = userSlice.reducer;

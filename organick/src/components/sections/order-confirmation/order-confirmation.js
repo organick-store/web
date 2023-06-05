@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './order-confirmation.module.scss';
 import Button from '../../UI/Button/Button';
 import { Heading } from '../../UI/Typography/typography';
 import WidthContainer from '../../UI/WidthContainer/container';
-import Form from './order-form/auth/order-form';
 import OrderElement from './order-form/order-element/order-element';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Order = () => {
-  const [isOrderBtnClicked, setIsOrderBtnClicked] = useState(false);
+  const navigate = useNavigate()
+  const user = useSelector(state => state.user);
+  const cart = useSelector((state) => state.cart.products);
 
   const toOrderHandler = () => {
-    setIsOrderBtnClicked(true);
+    if (!user.isAuth) {
+      navigate('/signup');
+      return;
+    } else if (!cart.length) {
+      return;
+    }
+    
+    //To Do: query to post order data
+    navigate('/success')
   };
 
-  const cart = useSelector((state) => state.cart.products);
 
   const OrderedProductsList = cart.map((product) => (
     <OrderElement
@@ -57,15 +65,13 @@ const Order = () => {
           </Heading>
         </WidthContainer>
       )}
-      <NavLink to={'/signup'}>
         <Button
           showArrow
           className={styles['order-to']}
           onClick={toOrderHandler}
         >
-          To order
+          Order
         </Button>
-      </NavLink>
     </section>
   );
 };

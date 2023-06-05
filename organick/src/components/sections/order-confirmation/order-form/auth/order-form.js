@@ -10,7 +10,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart } from '../../../../../redux/cartSlice';
 import { Paragraph, Subheading } from '../../../../UI/Typography/typography';
-import AuthService from '../../../../../services/AuthService';
 import { registration } from '../../../../../redux/userSlice';
 
 const Form = ({ bill }) => {
@@ -19,7 +18,6 @@ const Form = ({ bill }) => {
   const productsData = useSelector((state) => state.cart.products).map(
     ({ url, ...info }) => info
   );
-  
 
   const name = useInputValidation(validators.nameValidator);
   const email = useInputValidation(validators.emailValidator);
@@ -50,9 +48,9 @@ const Form = ({ bill }) => {
       return;
     }
     resetForm();
-    dispatch(clearCart());
-    dispatch(registration(name.value, email.value, password.value));
-    navigate('/success');
+    // dispatch(clearCart());
+    const res = dispatch(registration(name.value, email.value, password.value));
+    if (res.message) console.log('PABEDA');
   };
 
   return (
@@ -110,13 +108,16 @@ const Form = ({ bill }) => {
             warn={'Enter valid password'}
           />
           <Input
-            invalid={retypePassword.value !== password.value && retypePassword.isTouched}
+            invalid={
+              retypePassword.value !== password.value &&
+              retypePassword.isTouched
+            }
             value={retypePassword.value}
             label={'Retype password*'}
             inptType={'password'}
             onChange={retypePassword.valueChangeHandler}
             onBlur={retypePassword.inputBlurHandler}
-            warn={'Retyped password does not match the entered one entered'}
+            warn={'Retyped password does not match the entered one'}
           />
         </div>
         <Paragraph>
@@ -130,7 +131,7 @@ const Form = ({ bill }) => {
           className={styles['form-button']}
           onClick={submitHandler}
         >
-          Confirm
+          Register
         </Button>
       </form>
     </WidthContainer>

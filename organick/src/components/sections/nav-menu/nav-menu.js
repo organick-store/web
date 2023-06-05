@@ -5,8 +5,8 @@ import LogoMain from '../../UI/LogoMain/logo-main';
 import WidthContainer from '../../UI/WidthContainer/container';
 import { NavLink } from 'react-router-dom';
 import CartLink from './cart-link/cart-link';
-import SearchInput from './search-input/search-input';
 import Burger from './burger-button/burger';
+import Profile from './profile/profile';
 
 const NavMenu = () => {
   const [isActiveBurger, setIsActiveBurger] = useState(false);
@@ -38,9 +38,9 @@ const NavMenu = () => {
           </div>
         </div>
         <div className={styles['nav-menu__controls']}>
-          <SearchInput />
           <Burger isActive={isActiveBurger} isActiveHandler={isActiveBurgerHandler}/>
           <CartLink className={styles['nav-menu__controls-btn']} />
+          <Profile className={styles['nav-menu__profile']}/>
         </div>
       </WidthContainer>
     </nav>

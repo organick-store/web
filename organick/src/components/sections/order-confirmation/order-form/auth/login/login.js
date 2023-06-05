@@ -4,15 +4,15 @@ import styles from './login.module.scss';
 import useInputValidation, {
   validators,
 } from '../../../../../form-validation/form-validation';
-import { useNavigate } from 'react-router-dom';
 import { Subheading } from '../../../../../UI/Typography/typography';
 import { Input } from '../../form-input/form-input';
 import Button from '../../../../../UI/Button/Button';
+import { login } from '../../../../../../redux/userSlice';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const email = useInputValidation(validators.emailValidator);
-
   const password = useInputValidation(validators.passwordValidator);
 
   const submitHandler = async (event) => {
@@ -22,7 +22,7 @@ const Login = () => {
     }
     resetForm();
     // dispatch(clearCart());
-    navigate('/success');
+    dispatch(login(email.value, password.value));
   };
 
   const resetForm = () => {
@@ -48,7 +48,7 @@ const Login = () => {
           <Input
             invalid={!password.isValid && password.isTouched}
             value={password.value}
-            label={'Password(at)*'}
+            label={'Password(at least 8 characters)*'}
             inptType={'password'}
             onChange={password.valueChangeHandler}
             onBlur={password.inputBlurHandler}
@@ -61,7 +61,7 @@ const Login = () => {
           className={styles['form-button']}
           onClick={submitHandler}
         >
-          Confirm
+          Login
         </Button>
       </form>
     </WidthContainer>

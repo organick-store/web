@@ -10,18 +10,20 @@ import { useNavigate } from 'react-router-dom';
 const Order = () => {
   const navigate = useNavigate()
   const user = useSelector(state => state.user);
+  const cart = useSelector((state) => state.cart.products);
 
   const toOrderHandler = () => {
     if (!user.isAuth) {
       navigate('/signup');
       return;
+    } else if (!cart.length) {
+      return;
     }
-
+    
     //To Do: query to post order data
     navigate('/success')
   };
 
-  const cart = useSelector((state) => state.cart.products);
 
   const OrderedProductsList = cart.map((product) => (
     <OrderElement

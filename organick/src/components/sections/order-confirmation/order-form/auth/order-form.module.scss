@@ -1,6 +1,10 @@
 @import '../../../../../styles/main/colors.scss';
 
 .form {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   &__main {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(435px, 1fr));

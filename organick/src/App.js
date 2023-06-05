@@ -9,8 +9,11 @@ import NotFound from './pages/not-found/not-found';
 import ScrollToTop from './pages/scrollToTop';
 import Login from './components/sections/order-confirmation/order-form/auth/login/login';
 import Form from './components/sections/order-confirmation/order-form/auth/order-form';
+import CheckAuth from './components/checkAuth/checkAuth';
 
 function App() {
+  CheckAuth();
+
   return (
     <Router>
       <ScrollToTop />

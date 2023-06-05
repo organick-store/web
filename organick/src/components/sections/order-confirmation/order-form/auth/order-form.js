@@ -10,7 +10,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart } from '../../../../../redux/cartSlice';
 import { Paragraph, Subheading } from '../../../../UI/Typography/typography';
-import AuthService from '../../../../../services/AuthService';
 import { registration } from '../../../../../redux/userSlice';
 
 const Form = ({ bill }) => {
@@ -50,7 +49,8 @@ const Form = ({ bill }) => {
     }
     resetForm();
     // dispatch(clearCart());
-    dispatch(registration(name.value, email.value, password.value));
+    const res = dispatch(registration(name.value, email.value, password.value));
+    if (res.message) console.log('PABEDA');
   };
 
   return (
@@ -117,7 +117,7 @@ const Form = ({ bill }) => {
             inptType={'password'}
             onChange={retypePassword.valueChangeHandler}
             onBlur={retypePassword.inputBlurHandler}
-            warn={'Retyped password does not match the entered one entered'}
+            warn={'Retyped password does not match the entered one'}
           />
         </div>
         <Paragraph>

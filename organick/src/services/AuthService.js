@@ -16,10 +16,5 @@ export default class AuthService {
   static async refresh(token) {
     return $api.put(`/refresh/${token}`);
   }
-
-  // static async logout() {
-  //   return $api.post('/logout');
-  // }
-
 }
 

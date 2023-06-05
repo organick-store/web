@@ -19,7 +19,6 @@ const Profile = ({ className }) => {
   ) : (
     <div onClick={async () => dispatch(logout())}>
       <Heading className={styles.greetings}>Hi, {userFirstName}</Heading>
-      <Button onClick={() => dispatch(logout())}></Button>
     </div>
   );
 };

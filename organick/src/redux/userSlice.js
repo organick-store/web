@@ -63,8 +63,9 @@ export const refresh = () => async (dispatch) => {
     if (response.data.status === 'Success') {
       dispatch(setAuth(true));
       dispatch(setUser({email: response.data.email, name: response.data.name}));
-    } 
+    } else {
       localStorage.removeItem('token');
+    }
   } catch (e) {
     console.log(e);
   }

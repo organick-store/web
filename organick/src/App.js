@@ -11,10 +11,11 @@ import Login from './components/sections/order-confirmation/order-form/auth/logi
 import Form from './components/sections/order-confirmation/order-form/auth/order-form';
 import CheckAuth from './components/checkAuth/checkAuth';
 import ActivateAccount from './components/activateAccount/activateAccount';
+import useFetchProducts from './components/fetchProducts/useFetchProducts';
 
 function App() {
   CheckAuth();
-
+  useFetchProducts();
   return (
     <Router>
       <ScrollToTop />

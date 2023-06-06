@@ -25,7 +25,7 @@ const ProductForm = ({ onOpenModal, isShown, selectedProduct }) => {
     price,
     discount,
     id,
-    url,
+    image,
     overview,
     description,
     additionalInfo,
@@ -55,7 +55,7 @@ const ProductForm = ({ onOpenModal, isShown, selectedProduct }) => {
       discount: discount,
       quantity: inputQuantity,
       id: id,
-      url: url,
+      image: image,
     };
     dispatch(addItemToCart(addedItem));
     onOpenModal();
@@ -78,7 +78,7 @@ const ProductForm = ({ onOpenModal, isShown, selectedProduct }) => {
       <div ref={nodeRef} className={styles.product}>
         <WidthContainer className={styles['product__container']}>
           <div className={styles['product__details']}>
-            <ProductImg url={url} className={styles['product__details-img']} />
+            <ProductImg image={image} className={styles['product__details-img']} />
             <div className={styles['product__details-info']}>
               <Heading className={styles['product-name']}>{name}</Heading>
               <Rating />

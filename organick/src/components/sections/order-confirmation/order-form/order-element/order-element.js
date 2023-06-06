@@ -25,7 +25,7 @@ const OrderElement = (props) => {
 
   return (
     <div className={styles['product']}>
-      <ProductImg alt={props.name} url={props.url} className={styles['product-img']}/>
+      <ProductImg alt={props.name} image={props.image} className={styles['product-img']}/>
       <div className={styles['product-wrapper']}>
         <Heading className={styles['product-name']}>{props.name}</Heading>
         <ProductPrice

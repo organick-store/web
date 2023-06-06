@@ -24,7 +24,6 @@ const Order = () => {
     navigate('/success')
   };
 
-
   const OrderedProductsList = cart.map((product) => (
     <OrderElement
       name={product.name}
@@ -32,7 +31,7 @@ const Order = () => {
       discount={product.discount}
       key={product.id}
       id={product.id}
-      url={product.url}
+      image={product.image}
       quantity={product.quantity}
     />
   ));

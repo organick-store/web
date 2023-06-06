@@ -17,4 +17,3 @@ export default class AuthService {
     return $api.put(`/refresh/${token}`);
   }
 }
-

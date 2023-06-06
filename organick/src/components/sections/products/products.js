@@ -47,7 +47,7 @@ const Products = () => {
       key={product.name}
       price={product.price}
       discount={product.discount}
-      url={product.url}
+      image={product.image}
       onOpenModal={openModalHandler}
       onSelectItem={selectProductHandler}
       id={product.id}

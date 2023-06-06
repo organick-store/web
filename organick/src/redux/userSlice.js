@@ -37,20 +37,19 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
-export const registration = (name, email, password) => async (dispatch) => {
+export const registration = (name, email, password, phone, address) => async (dispatch) => {
   try {
-    const response = await AuthService.registration(name, email, password);
+    const response = await AuthService.registration(name, email, password, phone, address);
     console.log(response);
     localStorage.setItem('token', response.data.token);
     if (response.data.status === 'Success') {
-      console.log('success');
       dispatch(setAuth(true));
       dispatch(setUser({email: response.data.email, name: response.data.name}));
-      return {message: 'Successfully authorized'}
-    } 
-    return {message: response.data.message || 'Something went wrong'}
+      return { success: true, message: 'Registration successful.' };
+    }
+    return { success: false, message: 'Registration failed.' };
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 };
 

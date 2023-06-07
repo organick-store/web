@@ -14,7 +14,6 @@ const Order = () => {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
-  console.log(user);
   const bill = cart.reduce(
     (acc, curr) => {
       acc.price += +curr.price * +curr.quantity;
@@ -35,14 +34,11 @@ const Order = () => {
       totalDiscount: bill.discount,
       address: user.address,
     };
-    console.log(orderData);
     try {
-      const response = await OrderService.order(orderData);
-      console.log(response);
+      await OrderService.order(orderData);
       dispatch(clearCart());
       navigate('/success');
     } catch (error) {
-      console.log(error);
     }
   };
 

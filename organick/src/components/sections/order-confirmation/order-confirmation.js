@@ -7,22 +7,53 @@ import OrderElement from './order-form/order-element/order-element';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { clearCart } from '../../../redux/cartSlice';
+import { OrderService } from '../../../services/OrderService';
 
 const Order = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
+  console.log(user);
+  const bill = cart.reduce(
+    (acc, curr) => {
+      acc.price += +curr.price * +curr.quantity;
+      acc.discount += +curr.discount * +curr.quantity;
+      return acc;
+    },
+    { price: 0, discount: 0 }
+  );
 
-  const toOrderHandler = () => {
+  const createOrder = async () => {
+    const orderData = {
+      products: cart.map((product) => ({
+        name: product.name,
+        quantity: product.quantity,
+      })),
+      token: localStorage.getItem('token'),
+      totalCost: bill.price - bill.discount,
+      totalDiscount: bill.discount,
+      address: user.address,
+    };
+    console.log(orderData);
+    try {
+      const response = await OrderService.order(orderData);
+      console.log(response);
+      dispatch(clearCart());
+      navigate('/success');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const toOrderHandler = async () => {
     if (!user.isAuth) {
       navigate('/signup');
       return;
     } else if (!cart.length) {
       return;
     }
-
-    //To Do: query to post order data
+    await createOrder();
     dispatch(clearCart());
     navigate('/success');
   };
@@ -38,15 +69,6 @@ const Order = () => {
       quantity={product.quantity}
     />
   ));
-
-  const bill = cart.reduce(
-    (acc, curr) => {
-      acc.price += +curr.price * +curr.quantity;
-      acc.discount += +curr.discount * +curr.quantity;
-      return acc;
-    },
-    { price: 0, discount: 0 }
-  );
 
   return (
     <section className={styles['order']}>

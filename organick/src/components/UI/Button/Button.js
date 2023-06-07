@@ -27,13 +27,13 @@ const Button = ({
       )}
     >
       {children}
-      <BtnArrow
+      {/* <BtnArrow
         className={
           showArrow
             ? [styles['button-arrow']]
             : [styles['button-arrow--hidden']]
         }
-      />
+      /> */}
     </button>
   );
 };

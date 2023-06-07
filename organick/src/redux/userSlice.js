@@ -50,7 +50,6 @@ export const registration =
         phone,
         address
       );
-      console.log(response);
       localStorage.setItem('token', response.data.token);
       if (response.data.status === 'Success') {
         dispatch(setAuth(true));
@@ -74,7 +73,6 @@ export const refresh = () => async (dispatch) => {
     const token = localStorage.getItem('token');
     if (!token) return;
     const response = await AuthService.refresh(token);
-    console.log(response);
     if (response.data.status === 'Success') {
       dispatch(setAuth(true));
       dispatch(

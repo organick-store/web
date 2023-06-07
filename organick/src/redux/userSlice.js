@@ -23,7 +23,6 @@ export const { setUser, setAuth } = userSlice.actions;
 export const login = (email, password) => async (dispatch) => {
   try {
     const response = await AuthService.login(email, password);
-    console.log(response);
     localStorage.setItem('token', response.data.token);
     if (response.data.status === 'Success') {
       console.log('success');
@@ -37,20 +36,18 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
-export const registration = (name, email, password) => async (dispatch) => {
+export const registration = (name, email, password, phone, address) => async (dispatch) => {
   try {
-    const response = await AuthService.registration(name, email, password);
-    console.log(response);
+    const response = await AuthService.registration(name, email, password, phone, address);
     localStorage.setItem('token', response.data.token);
     if (response.data.status === 'Success') {
-      console.log('success');
       dispatch(setAuth(true));
       dispatch(setUser({email: response.data.email, name: response.data.name}));
-      return {message: 'Successfully authorized'}
-    } 
-    return {message: response.data.message || 'Something went wrong'}
+      return { success: true, message: 'Registration successful.' };
+    }
+    return { success: false, message: 'Registration failed.' };
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 };
 
@@ -59,7 +56,6 @@ export const refresh = () => async (dispatch) => {
     const token = localStorage.getItem('token');
     if (!token) return;
     const response = await AuthService.refresh(token);
-    console.log(response);
     if (response.data.status === 'Success') {
       dispatch(setAuth(true));
       dispatch(setUser({email: response.data.email, name: response.data.name}));
@@ -75,7 +71,6 @@ export const activate = (token) => async (dispatch) => {
   try {
     if (!token) return;
     const response = await AuthService.activate(token);
-    console.log(response);
     if (response.data.status === 'Success') {
       return {message: response.data.message}
     }

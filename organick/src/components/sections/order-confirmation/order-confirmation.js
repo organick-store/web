@@ -4,13 +4,15 @@ import Button from '../../UI/Button/Button';
 import { Heading } from '../../UI/Typography/typography';
 import WidthContainer from '../../UI/WidthContainer/container';
 import OrderElement from './order-form/order-element/order-element';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { clearCart } from '../../../redux/cartSlice';
 
 const Order = () => {
-  const navigate = useNavigate()
-  const user = useSelector(state => state.user);
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart.products);
+  const dispatch = useDispatch();
 
   const toOrderHandler = () => {
     if (!user.isAuth) {
@@ -19,9 +21,10 @@ const Order = () => {
     } else if (!cart.length) {
       return;
     }
-    
+
     //To Do: query to post order data
-    navigate('/success')
+    dispatch(clearCart());
+    navigate('/success');
   };
 
   const OrderedProductsList = cart.map((product) => (
@@ -64,13 +67,9 @@ const Order = () => {
           </Heading>
         </WidthContainer>
       )}
-        <Button
-          showArrow
-          className={styles['order-to']}
-          onClick={toOrderHandler}
-        >
-          Order
-        </Button>
+      <Button showArrow className={styles['order-to']} onClick={toOrderHandler}>
+        Order
+      </Button>
     </section>
   );
 };

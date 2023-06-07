@@ -40,8 +40,7 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
-export const registration =
-  (name, email, password, phone, address) => async (dispatch) => {
+export const registration = (name, email, password, phone, address) => async (dispatch) => {
     try {
       const response = await AuthService.registration(
         name,

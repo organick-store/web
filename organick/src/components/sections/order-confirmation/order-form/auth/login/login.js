@@ -47,6 +47,7 @@ const Login = () => {
             onChange={email.valueChangeHandler}
             onBlur={email.inputBlurHandler}
             warn={'Enter a valid email'}
+            data-testid='login-email'
           />
           <Input
             invalid={!password.isValid && password.isTouched}
@@ -56,6 +57,7 @@ const Login = () => {
             onChange={password.valueChangeHandler}
             onBlur={password.inputBlurHandler}
             warn={'Enter valid password'}
+            data-testid='login-password'
           />
         </div>
         <Button
@@ -63,6 +65,7 @@ const Login = () => {
           type='submit'
           className={styles['form-button']}
           onClick={submitHandler}
+          data-testid='login-button'
         >
           Login
         </Button>

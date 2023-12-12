@@ -41,31 +41,31 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const registration = (name, email, password, phone, address) => async (dispatch) => {
-    try {
-      const response = await AuthService.registration(
-        name,
-        email,
-        password,
-        phone,
-        address
+  try {
+    const response = await AuthService.registration(
+      name,
+      email,
+      password,
+      phone,
+      address
+    );
+    localStorage.setItem('token', response.data.token);
+    if (response.data.status === 'Success') {
+      dispatch(setAuth(true));
+      dispatch(
+        setUser({
+          email: response.data.email,
+          name: response.data.name,
+          address: response.data.address,
+        })
       );
-      localStorage.setItem('token', response.data.token);
-      if (response.data.status === 'Success') {
-        dispatch(setAuth(true));
-        dispatch(
-          setUser({
-            email: response.data.email,
-            name: response.data.name,
-            address: response.data.address,
-          })
-        );
-        return { success: true, message: 'Registration successful.' };
-      }
-      return { success: false, message: 'Registration failed.' };
-    } catch (e) {
-      console.error(e);
+      return { success: true, message: 'Registration successful.' };
     }
-  };
+    return { success: false, message: 'Registration failed.' };
+  } catch (e) {
+    console.error(e);
+  }
+};
 
 export const refresh = () => async (dispatch) => {
   try {

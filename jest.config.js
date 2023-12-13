@@ -14,6 +14,6 @@ module.exports = {
   },
   verbose: true,
   testMatch: [
-    "<rootDir>/__tests__/**/*.test.js",
+    "<rootDir>/src/__tests__/**/*.test.js",
   ],
 };

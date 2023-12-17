@@ -1,6 +1,6 @@
 import $api from '../http';
 
-export class OrderService {
+export default class OrderService {
   static async order(orderData) {
     return $api.post('/order', orderData);
   }

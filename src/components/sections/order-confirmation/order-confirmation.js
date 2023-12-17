@@ -7,7 +7,7 @@ import OrderElement from './order-form/order-element/order-element';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { clearCart } from '../../../redux/cartSlice';
-import { OrderService } from '../../../services/OrderService';
+import OrderService from '../../../services/OrderService';
 
 const Order = () => {
   const navigate = useNavigate();
@@ -39,6 +39,7 @@ const Order = () => {
       dispatch(clearCart());
       navigate('/success');
     } catch (error) {
+      console.log(error);
     }
   };
 
@@ -50,8 +51,6 @@ const Order = () => {
       return;
     }
     await createOrder();
-    dispatch(clearCart());
-    navigate('/success');
   };
 
   const OrderedProductsList = cart.map((product) => (

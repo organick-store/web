@@ -2,8 +2,7 @@ import $api from '../http';
 
 export default class AuthService {
   static async login(email, password) {
-    console.log('AuthService.login');
-    // return $api.post('/signin', { email, password });
+    return $api.post('/signin', { email, password });
   }
 
   static async registration(name, email, password, phone, address) {

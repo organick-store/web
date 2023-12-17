@@ -75,10 +75,17 @@ const ProductForm = ({ onOpenModal, isShown, selectedProduct }) => {
       mountOnEnter
       unmountOnExit
     >
-      <div ref={nodeRef} className={styles.product}>
+      <div
+        ref={nodeRef}
+        className={styles.product}
+        data-testid='products-modal'
+      >
         <WidthContainer className={styles['product__container']}>
           <div className={styles['product__details']}>
-            <ProductImg image={image} className={styles['product__details-img']} />
+            <ProductImg
+              image={image}
+              className={styles['product__details-img']}
+            />
             <div className={styles['product__details-info']}>
               <Heading className={styles['product-name']}>{name}</Heading>
               <Rating />

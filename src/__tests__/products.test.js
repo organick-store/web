@@ -184,7 +184,6 @@ describe('Products component', () => {
     const addToCartButton = screen.getByText('Add To Cart');
     fireEvent.click(addToCartButton);
 
-    console.log(store.getState());
     expect(store.getState().cart.cartCounter).toBe(1);
     expect(store.getState().cart.products[0]).toMatchObject({
       id: 1,

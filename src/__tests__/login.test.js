@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux'; // Import Provider
 import { useNavigate } from 'react-router-dom';
 import Login from '../pages/login/login';
@@ -47,7 +47,7 @@ describe('Login component', () => {
     fireEvent.click(loginButton);
 
     // Now, assert that the mockLogin function was called
-    expect(mockLogin).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(mockLogin).toHaveBeenCalledTimes(1));
     expect(mockNavigate).toHaveBeenCalledWith('/');
   });
 

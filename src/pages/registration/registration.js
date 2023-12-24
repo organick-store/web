@@ -3,70 +3,86 @@ import { Input } from '../../components/UI/form-input/form-input';
 import WidthContainer from '../../components/UI/width-container/container';
 import styles from './registration.module.scss';
 import Button from '../../components/UI/button/button';
-import useInputValidation, {
-  validators,
-} from '../../hooks/useInputValidation';
+import { validators } from '../../utils/validators';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Paragraph, Subheading } from '../../components/UI/typography/typography';
+import {
+  Paragraph,
+  Subheading,
+} from '../../components/UI/typography/typography';
 import { registration } from '../../redux/userSlice';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const Registration = () => {
   const dispatch = useDispatch();
-  const [registrationMessage, setRegistrationMessage] = useState('');
   const [registrationStatus, setRegistrationStatus] = useState(false);
 
-  const name = useInputValidation(validators.nameValidator);
-  const email = useInputValidation(validators.emailValidator);
-  const phone = useInputValidation(validators.phoneValidator);
-  const address = useInputValidation(validators.addressValidator);
-  const password = useInputValidation(validators.passwordValidator);
-  const retypePassword = useInputValidation(validators.passwordValidator);
+  const initialValues = Yup.object({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    password: '',
+    retypePassword: '',
+  });
+
+  const validationSchema = Yup.object({
+    name: Yup.string()
+      .required('Required field')
+      .test('name', 'Invalid name', (value) => validators.nameValidator(value)),
+    email: Yup.string()
+      .required('Required field')
+      .test('email', 'Invalid email address', (value) =>
+        validators.emailValidator(value),
+      ),
+    phone: Yup.string()
+      .required('Required field')
+      .test('phone', 'Invalid phone number', (value) =>
+        validators.phoneValidator(value),
+      ),
+    address: Yup.string()
+      .required('Required field')
+      .test('address', 'Invalid address', (value) =>
+        validators.addressValidator(value),
+      ),
+    password: Yup.string()
+      .required('Required field')
+      .test('password', 'Invalid password', (value) =>
+        validators.passwordValidator(value),
+      ),
+    retypePassword: Yup.string()
+      .required('Required field')
+      .test('retypePassword', 'Invalid password', (value) =>
+        validators.passwordValidator(value),
+      ),
+  });
+
+  const onSubmit = async (values) => {
+    resetForm();
+
+    const { status, message } = await dispatch(
+      registration(
+        values.name,
+        values.email,
+        values.password,
+        values.phone,
+        values.address,
+      ),
+    );
+    setRegistrationStatus(status);
+    setRegistrationMessage(message);
+  };
 
   const resetForm = () => {
-    name.reset();
-    email.reset();
-    phone.reset();
-    address.reset();
-    password.reset();
-    retypePassword.reset();
+    formik.resetForm();
   };
 
-  const submitHandler = async (event) => {
-    event.preventDefault();
-    if (
-      !name.isValid ||
-      !email.isValid ||
-      !phone.isValid ||
-      !address.isValid ||
-      !password.isValid ||
-      !retypePassword.isValid
-    ) {
-      return;
-    }
-    resetForm();
-    try {
-      const { success, message } = await dispatch(
-        registration(
-          name.value,
-          email.value,
-          password.value,
-          phone.value,
-          address.value,
-        ),
-      );
-      if (success) {
-        setRegistrationStatus(true);
-        setRegistrationMessage(message);
-      } else {
-        setRegistrationStatus(false);
-        setRegistrationMessage(message);
-      }
-    } catch (error) {
-      setRegistrationStatus(false);
-      setRegistrationMessage('An error occurred during registration.');
-    }
-  };
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+  });
 
   return (
     <WidthContainer className={styles.container}>
@@ -75,65 +91,69 @@ const Registration = () => {
           <Subheading className={styles['form-title']}>Registration</Subheading>
           <div className={styles.form__main}>
             <Input
-              invalid={!name.isValid && name.isTouched}
-              value={name.value}
+              name='name'
+              invalid={formik.touched.name && formik.errors.name}
+              value={formik.values.name}
               label={'Full name*'}
               inptType={'text'}
               inptPlaceholder={'Name Surname'}
-              onChange={name.valueChangeHandler}
-              onBlur={name.inputBlurHandler}
-              warn={'Enter a valid full name'}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              warn={formik.errors.name}
             />
             <Input
-              invalid={!email.isValid && email.isTouched}
-              value={email.value}
+              name='email'
+              invalid={formik.touched.email && formik.errors.email}
+              value={formik.values.email}
               label={'Email address*'}
               inptType={'email'}
               inptPlaceholder={'example@yourmail.com'}
-              onChange={email.valueChangeHandler}
-              onBlur={email.inputBlurHandler}
-              warn={'Enter a valid email'}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              warn={formik.errors.email}
             />
             <Input
-              invalid={!address.isValid && address.isTouched}
-              value={address.value}
+              name='address'
+              invalid={formik.touched.address && formik.errors.address}
+              value={formik.values.address}
               label={'Address*'}
               inptType={'text'}
               inptPlaceholder={'Your address'}
-              onChange={address.valueChangeHandler}
-              onBlur={address.inputBlurHandler}
-              warn={'Enter a valid address'}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              warn={formik.errors.address}
             />
             <Input
-              invalid={!phone.isValid && phone.isTouched}
-              value={phone.value}
+              name='phone'
+              invalid={formik.touched.phone && formik.errors.phone}
+              value={formik.values.phone}
               label={'Phone number*'}
               inptType={'tel'}
               inptPlaceholder={'0000000000'}
-              onChange={phone.valueChangeHandler}
-              onBlur={phone.inputBlurHandler}
-              warn={'Enter a valid phone number'}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              warn={formik.errors.phone}
             />
             <Input
-              invalid={!password.isValid && password.isTouched}
-              value={password.value}
+              name='password'
+              invalid={formik.touched.password && formik.errors.password}
+              value={formik.values.password}
               label={'Password(at least 8 characters)*'}
               inptType={'password'}
-              onChange={password.valueChangeHandler}
-              onBlur={password.inputBlurHandler}
-              warn={'Enter valid password'}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              warn={formik.errors.password}
             />
             <Input
-              invalid={
-                retypePassword.value !== password.value &&
-                retypePassword.isTouched
-              }
-              value={retypePassword.value}
+              name='retypePassword'
+              invalid={formik.touched.retypePassword && formik.errors.retypePassword
+                || formik.values.retypePassword !== formik.values.password}
+              value={formik.values.retypePassword}
               label={'Retype password*'}
               inptType={'password'}
-              onChange={retypePassword.valueChangeHandler}
-              onBlur={retypePassword.inputBlurHandler}
-              warn={'Retyped password does not match the entered one'}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              warn={formik.errors.retypePassword}
             />
           </div>
           <Paragraph>
@@ -145,7 +165,7 @@ const Registration = () => {
             showArrow
             type='submit'
             className={styles['form-button']}
-            onClick={submitHandler}
+            onClick={formik.handleSubmit}
           >
             Register
           </Button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
@@ -55,7 +55,9 @@ describe('Form component', () => {
     fireEvent.change(retypePasswordInput, { target: { value: 'password123' } });
     fireEvent.click(registerButton);
 
-    expect(mockRegistration).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(mockRegistration).toHaveBeenCalledTimes(1);
+    });
     expect(mockNavigate).not.toHaveBeenCalled();
   });
 

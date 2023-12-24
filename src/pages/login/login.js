@@ -1,70 +1,88 @@
 import React from 'react';
 import WidthContainer from '../../components/UI/width-container/container';
 import styles from './login.module.scss';
-import useInputValidation, {
-  validators,
-} from '../../hooks/useInputValidation';
+import { validators } from '../../utils/validators';
 import { Subheading } from '../../components/UI/typography/typography';
 import { Input } from '../../components/UI/form-input/form-input';
 import Button from '../../components/UI/button/button';
 import { login } from '../../redux/userSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const email = useInputValidation(validators.emailValidator);
-  const password = useInputValidation(validators.passwordValidator);
   const navigate = useNavigate();
 
-  const submitHandler = async (event) => {
-    event.preventDefault();
-    if (!email.isValid || !password.isValid) {
-      return;
-    }
+  const initialValues = {
+    email: '',
+    password: '',
+  };
+
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .required('Required field')
+      .test('email', 'Invalid email address', (value) =>
+        validators.emailValidator(value),
+      ),
+    password: Yup.string()
+      .required('Required field')
+      .test('password', 'Invalid password', (value) =>
+        validators.passwordValidator(value),
+      ),
+  });
+
+  const onSubmit = (values) => {
     resetForm();
-    // dispatch(clearCart());
-    dispatch(login(email.value, password.value));
+    dispatch(login(values.email, values.password));
     navigate('/');
   };
 
   const resetForm = () => {
-    email.reset();
-    password.reset();
+    formik.resetForm();
   };
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+  });
 
   return (
     <WidthContainer>
-      <form className={styles.form}>
+      <form className={styles.form} >
         <Subheading className={styles['form-title']}>Login</Subheading>
         <div className={styles.form__main}>
           <Input
-            invalid={!email.isValid && email.isTouched}
-            value={email.value}
-            label={'Email address*'}
-            inptType={'email'}
+            name='email'
+            invalid={formik.touched.email && formik.errors.email}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            warn={formik.errors.email}
             inptPlaceholder={'example@yourmail.com'}
-            onChange={email.valueChangeHandler}
-            onBlur={email.inputBlurHandler}
-            warn={'Enter a valid email'}
+            inptType={'email'}
+            label={'Email address*'}
             data-testid='login-email'
           />
           <Input
-            invalid={!password.isValid && password.isTouched}
-            value={password.value}
+            name='password'
+            invalid={formik.touched.password && formik.errors.password}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             label={'Password(at least 8 characters)*'}
             inptType={'password'}
-            onChange={password.valueChangeHandler}
-            onBlur={password.inputBlurHandler}
-            warn={'Enter valid password'}
+            warn={formik.errors.password}
             data-testid='login-password'
           />
         </div>
         <Button
           showArrow
           type='submit'
+          onClick={formik.handleSubmit}
           className={styles['form-button']}
-          onClick={submitHandler}
           data-testid='login-button'
         >
           Login

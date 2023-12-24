@@ -22,8 +22,8 @@ jest.mock('../services/ProductService.js', () => {
     getAll: () => mockFetchProducts(),
   };
 });
-jest.mock('../services/OrderService.js', () => { });
-jest.mock('../services/AuthService.js', () => { });
+jest.mock('../services/OrderService.js', () => {});
+jest.mock('../services/AuthService.js', () => {});
 
 describe('Products component', () => {
   beforeEach(() => {

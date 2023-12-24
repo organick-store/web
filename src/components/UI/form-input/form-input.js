@@ -11,12 +11,14 @@ export const Input = ({
   invalid,
   value,
   warn,
+  name,
 }) => {
   return (
     <label className={inptStyles.label}>
       {label}
       {invalid && <span className={inptStyles.warn}>{warn}</span>}
       <input
+        name={name}
         type={inptType}
         placeholder={inptPlaceholder}
         className={classNames(inptStyles.input, {

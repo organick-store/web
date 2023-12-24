@@ -55,7 +55,7 @@ const Products = () => {
         Categories
       </Subheading>
       <Heading className={styles['categories-heading']}>Our Products</Heading>
-      {!productsData.length ? (
+      {productsData.length ? (
         <>
           <WidthContainer className={styles['categories__container']}>
             {showAll

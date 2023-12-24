@@ -19,11 +19,11 @@ jest.mock('react-redux', () => ({
 
 jest.mock('../services/ProductService.js', () => {
   return {
-    fetchProducts: () => mockFetchProducts(),
+    getAll: () => mockFetchProducts(),
   };
 });
-jest.mock('../services/OrderService.js', () => {});
-jest.mock('../services/AuthService.js', () => {});
+jest.mock('../services/OrderService.js', () => { });
+jest.mock('../services/AuthService.js', () => { });
 
 describe('Products component', () => {
   beforeEach(() => {

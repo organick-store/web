@@ -21,11 +21,11 @@ jest.mock('react-redux', () => ({
 
 jest.mock('../services/OrderService.js', () => {
   return {
-    order: () => mockOrder(),
+    createOrder: () => mockOrder(),
   };
 });
-jest.mock('../services/ProductService.js', () => {});
-jest.mock('../services/AuthService.js', () => {});
+jest.mock('../services/ProductService.js', () => { });
+jest.mock('../services/AuthService.js', () => { });
 
 describe('Order component', () => {
   beforeEach(() => {

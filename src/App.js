@@ -6,14 +6,14 @@ import CartBody from './pages/cart/cart';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SuccessBanner from './components/UI/banners/success-banner/success-banner';
 import NotFound from './pages/not-found/not-found';
-import ScrollToTop from './pages/scrollToTop';
+import ScrollToTop from './hooks/scrollToTop';
 import Login from './components/sections/order-confirmation/order-form/auth/login/login';
 import Form from './components/sections/order-confirmation/order-form/auth/order-form';
-import CheckAuth from './components/checkAuth/checkAuth';
-import ActivateAccount from './components/activateAccount/activateAccount';
+import useCheckAuth from './hooks/useCheckAuth';
+import ActivateAccount from './pages/activate-account/activate-account';
 
 function App() {
-  CheckAuth();
+  useCheckAuth();
   return (
     <Router>
       <ScrollToTop />

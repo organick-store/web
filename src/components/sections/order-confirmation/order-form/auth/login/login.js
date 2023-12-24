@@ -3,7 +3,7 @@ import WidthContainer from '../../../../../UI/WidthContainer/container';
 import styles from './login.module.scss';
 import useInputValidation, {
   validators,
-} from '../../../../../form-validation/form-validation';
+} from '../../../../../../hooks/useInputValidation';
 import { Subheading } from '../../../../../UI/Typography/typography';
 import { Input } from '../../form-input/form-input';
 import Button from '../../../../../UI/Button/Button';

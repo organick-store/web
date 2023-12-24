@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { refresh } from '../../redux/userSlice';
+import { refresh } from '../redux/userSlice';
 
-const CheckAuth = () => {
+const useCheckAuth = () => {
   const user = useSelector((state) => state.user);
   const token = localStorage.getItem('token');
   const dispatch = useDispatch();
@@ -14,4 +14,4 @@ const CheckAuth = () => {
   }, [dispatch, user.isAuth, token]);
 };
 
-export default CheckAuth;
+export default useCheckAuth;

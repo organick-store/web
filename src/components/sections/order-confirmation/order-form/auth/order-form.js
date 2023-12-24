@@ -5,7 +5,7 @@ import styles from './order-form.module.scss';
 import Button from '../../../../UI/Button/Button';
 import useInputValidation, {
   validators,
-} from '../../../../form-validation/form-validation';
+} from '../../../../../hooks/useInputValidation';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Paragraph, Subheading } from '../../../../UI/Typography/typography';

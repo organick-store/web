@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './news-card.module.scss';
 import { ReactComponent as PersonIcon } from '../../../../img/person.svg';
-import { Heading, Paragraph } from '../../../UI/Typography/typography';
-import Button from '../../../UI/Button/Button';
+import { Heading, Paragraph } from '../../../UI/typography/typography';
+import Button from '../../../UI/button/button';
 import classNames from 'classnames';
 
 const NewsCard = ({ className, heading, paragraph }) => {

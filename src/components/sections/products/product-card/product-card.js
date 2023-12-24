@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from '../../../UI/Button/Button';
+import Button from '../../../UI/button/button';
 import styles from './product-card.module.scss';
-import { Heading } from '../../../UI/Typography/typography';
+import { Heading } from '../../../UI/typography/typography';
 import { ReactComponent as Rating } from '../../../../img/5-stars.svg';
 import ProductPrice from './product-price/product-price';
 import ProductImg from './product-image/product-image';

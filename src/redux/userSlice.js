@@ -90,7 +90,7 @@ export const refresh = () => async (dispatch) => {
   }
 };
 
-export const activate = (token) => async (dispatch) => {
+export const activate = async (token) => {
   try {
     if (!token) return;
     const response = await AuthService.activate(token);

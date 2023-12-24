@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styles from './products-modal.module.scss';
 import { ReactComponent as Rating } from '../../../../img/5-stars.svg';
-import { Heading, Paragraph } from '../../../UI/Typography/typography';
+import { Heading, Paragraph } from '../../../UI/typography/typography';
 import ProductPrice from '../product-card/product-price/product-price';
-import Button from '../../../UI/Button/Button';
-import WidthContainer from '../../../UI/WidthContainer/container';
+import Button from '../../../UI/button/button';
+import WidthContainer from '../../../UI/width-container/container';
 import ProductQuantityInput from '../product-card/product-quantity-input/input';
 import { CSSTransition } from 'react-transition-group';
 import { useDispatch } from 'react-redux';

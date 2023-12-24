@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading } from '../../../UI/Typography/typography';
+import { Heading } from '../../../UI/typography/typography';
 import styles from './cart-link.module.scss';
 import { useSelector } from 'react-redux';
 import { ReactComponent as Cart } from '../../../../img/nav-menu-cart.svg';

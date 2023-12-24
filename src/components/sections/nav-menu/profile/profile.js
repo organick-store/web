@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './profile.module.scss';
 import { logout } from '../../../../redux/userSlice';
-import Button from '../../../UI/Button/Button';
+import Button from '../../../UI/button/button';
 import { ReactComponent as ArrDown } from '../../../../img/nav-menu-arrow-down.svg';
 import { useNavigate } from 'react-router-dom';
 
-const Profile = ({ className }) => {
+const Profile = () => {
   const { name, isAuth } = useSelector((state) => state.user);
   const userFirstName = name.split(' ')[0];
   const dispatch = useDispatch();

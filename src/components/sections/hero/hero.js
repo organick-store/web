@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './hero.module.scss';
-import Button from '../../UI/Button/Button';
-import { Subheading, HeroHeading } from '../../UI/Typography/typography';
-import WidthContainer from '../../UI/WidthContainer/container';
+import Button from '../../UI/button/button';
+import { Subheading, HeroHeading } from '../../UI/typography/typography';
+import WidthContainer from '../../UI/width-container/container';
 import { ReactComponent as DecoreGroup } from '../../../img/decors/group.svg';
 
 const Hero = () => {

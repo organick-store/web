@@ -1,10 +1,10 @@
 import React from 'react';
-import Button from '../../components/UI/Button/Button';
+import Button from '../../components/UI/button/button';
 import {
   HeroHeading,
   Paragraph,
-} from '../../components/UI/Typography/typography';
-import WidthContainer from '../../components/UI/WidthContainer/container';
+} from '../../components/UI/typography/typography';
+import WidthContainer from '../../components/UI/width-container/container';
 import styles from './not-found.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as NotFoundDecores } from '../../img/decors/not-found-group.svg';
@@ -21,7 +21,7 @@ const NotFound = () => {
             Page not found
           </HeroHeading>
           <Paragraph className={styles['not-found__content-paragraph']}>
-            The page you are looking for doesn't exist or has been moved
+            {`The page you are looking for doesn't exist or has been moved`}
           </Paragraph>
           <Button
             showArrow={true}

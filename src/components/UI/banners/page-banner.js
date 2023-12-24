@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading } from '../Typography/typography';
+import { Heading } from '../typography/typography';
 import styles from './page-banner.module.scss';
 import classNames from 'classnames';
 

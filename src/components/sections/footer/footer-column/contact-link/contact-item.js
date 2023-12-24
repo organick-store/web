@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paragraph } from '../../../../UI/Typography/typography';
+import { Paragraph } from '../../../../UI/typography/typography';
 import styles from './contact-item.module.scss';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';

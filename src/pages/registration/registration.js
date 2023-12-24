@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
-import { Input } from '../form-input/form-input';
-import WidthContainer from '../../../../UI/WidthContainer/container';
-import styles from './order-form.module.scss';
-import Button from '../../../../UI/Button/Button';
+import { Input } from '../../components/UI/form-input/form-input';
+import WidthContainer from '../../components/UI/width-container/container';
+import styles from './registration.module.scss';
+import Button from '../../components/UI/button/button';
 import useInputValidation, {
   validators,
-} from '../../../../../hooks/useInputValidation';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { Paragraph, Subheading } from '../../../../UI/Typography/typography';
-import { registration } from '../../../../../redux/userSlice';
+} from '../../hooks/useInputValidation';
+import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Paragraph, Subheading } from '../../components/UI/typography/typography';
+import { registration } from '../../redux/userSlice';
 
-const Form = ({ bill }) => {
-  const navigate = useNavigate();
+const Registration = () => {
   const dispatch = useDispatch();
   const [registrationMessage, setRegistrationMessage] = useState('');
   const [registrationStatus, setRegistrationStatus] = useState(false);
@@ -161,4 +160,4 @@ const Form = ({ bill }) => {
   );
 };
 
-export default Form;
+export default Registration;

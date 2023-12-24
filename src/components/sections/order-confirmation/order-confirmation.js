@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './order-confirmation.module.scss';
-import Button from '../../UI/Button/Button';
-import { Heading } from '../../UI/Typography/typography';
-import WidthContainer from '../../UI/WidthContainer/container';
-import OrderElement from './order-form/order-element/order-element';
+import Button from '../../UI/button/button';
+import { Heading } from '../../UI/typography/typography';
+import WidthContainer from '../../UI/width-container/container';
+import OrderElement from './order-element/order-element';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { clearCart } from '../../../redux/cartSlice';

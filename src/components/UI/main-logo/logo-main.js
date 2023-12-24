@@ -1,7 +1,7 @@
 import logo from '../../../img/Logo.svg';
 import styles from './logo-main.module.scss';
 import React from 'react';
-import { Heading } from '../Typography/typography';
+import { Heading } from '../typography/typography';
 import { useNavigate } from 'react-router-dom';
 
 const LogoMain = () => {

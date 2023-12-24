@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import WidthContainer from '../../components/UI/WidthContainer/container';
+import WidthContainer from '../../components/UI/width-container/container';
 import styles from './activate-account.module.scss';
-import { Subheading } from '../../components/UI/Typography/typography';
+import { Subheading } from '../../components/UI/typography/typography';
 import { useDispatch } from 'react-redux';
 import { activate } from '../../redux/userSlice';
 

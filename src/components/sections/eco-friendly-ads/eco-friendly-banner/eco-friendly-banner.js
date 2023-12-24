@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../../UI/Button/Button';
+import Button from '../../../UI/button/button';
 import styles from './eco-friendly-banner.module.scss';
 import classNames from 'classnames';
 

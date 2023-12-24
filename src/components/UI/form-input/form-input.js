@@ -13,7 +13,6 @@ export const Input = ({
   warn,
 }) => {
   return (
-    // <>
     <label className={inptStyles.label}>
       {label}
       {invalid && <span className={inptStyles.warn}>{warn}</span>}
@@ -29,8 +28,6 @@ export const Input = ({
         required
       />
     </label>
-    // {/* <span className={inptStyles.warn}>{warn}</span> */}
-    //{/* </> */}
   );
 };
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from './product-card/product-card';
-import { Subheading, Heading, Paragraph } from '../../UI/Typography/typography';
-import Button from '../../UI/Button/Button';
+import { Subheading, Heading, Paragraph } from '../../UI/typography/typography';
+import Button from '../../UI/button/button';
 import styles from './products.module.scss';
-import WidthContainer from '../../UI/WidthContainer/container';
+import WidthContainer from '../../UI/width-container/container';
 import ProductForm from './products-modal/products-modal';
 import ProductBackdrop from './products-modal/product-backdrop';
 import CartLink from '../nav-menu/cart-link/cart-link';
@@ -43,6 +43,7 @@ const Products = () => {
 
   const productsList = productsData.map((product) => (
     <ProductCard
+      key={product.name}
       product={product}
       onOpenModal={openModalHandler}
       onSelectItem={selectProductHandler}

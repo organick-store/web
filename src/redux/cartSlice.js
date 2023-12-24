@@ -33,7 +33,7 @@ const cartSlice = createSlice({
         0,
       );
     },
-    clearCart(state, action) {
+    clearCart(state) {
       state.products = [];
       state.cartCounter = 0;
     },

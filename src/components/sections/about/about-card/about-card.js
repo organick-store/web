@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './about-card.module.scss';
-import { Heading, Paragraph } from '../../../UI/Typography/typography';
+import { Heading, Paragraph } from '../../../UI/typography/typography';
 import classNames from 'classnames';
 
 const AboutCard = ({ img, heading, paragraph, disableImg }) => {

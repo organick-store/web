@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import styles from './order-element.module.scss';
-import { Heading } from '../../../../UI/Typography/typography';
-import ProductQuantityInput from '../../../products/product-card/product-quantity-input/input';
-import Button from '../../../../UI/Button/Button';
-import ProductPrice from '../../../products/product-card/product-price/product-price';
+import { Heading } from '../../../UI/typography/typography';
+import ProductQuantityInput from '../../products/product-card/product-quantity-input/input';
+import Button from '../../../UI/button/button';
+import ProductPrice from '../../products/product-card/product-price/product-price';
 import { useDispatch } from 'react-redux';
 import {
   removeItemFromCart,
   setCartItemQuantity,
-} from '../../../../../redux/cartSlice';
-import ProductImg from '../../../products/product-card/product-image/product-image';
+} from '../../../../redux/cartSlice';
+import ProductImg from '../../products/product-card/product-image/product-image';
 
 const OrderElement = (props) => {
   const [inputQuantity, setInputQuantity] = useState(props.quantity || '');

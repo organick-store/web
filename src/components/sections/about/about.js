@@ -4,9 +4,9 @@ import aboutImg from '../../../img/about-img.png';
 import AboutCard from './about-card/about-card';
 import veganFood from '../../../img/about-vegan-food.svg';
 import aboutMailbox from '../../../img/about-mailbox-quality.svg';
-import Button from '../../UI/Button/Button';
-import { Heading, Subheading, Paragraph } from '../../UI/Typography/typography';
-import WidthContainer from '../../UI/WidthContainer/container';
+import Button from '../../UI/button/button';
+import { Heading, Subheading, Paragraph } from '../../UI/typography/typography';
+import WidthContainer from '../../UI/width-container/container';
 
 const About = () => {
   return (
@@ -23,9 +23,9 @@ const About = () => {
             We Believe in Working Accredited Farmers
           </Heading>
           <Paragraph className={styles['about__description-paragraph']}>
-            Simply dummy text of the printing and typesetting industry. Lorem
+            {`Simply dummy text of the printing and typesetting industry. Lorem
             had ceased to been the industry's standard dummy text ever since the
-            1500s, when an unknown printer took a galley.
+            1500s, when an unknown printer took a galley.`}
           </Paragraph>
           <div className={styles['about__cards']}>
             <AboutCard

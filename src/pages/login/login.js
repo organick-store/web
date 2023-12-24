@@ -1,13 +1,13 @@
 import React from 'react';
-import WidthContainer from '../../../../../UI/WidthContainer/container';
+import WidthContainer from '../../components/UI/width-container/container';
 import styles from './login.module.scss';
 import useInputValidation, {
   validators,
-} from '../../../../../../hooks/useInputValidation';
-import { Subheading } from '../../../../../UI/Typography/typography';
-import { Input } from '../../form-input/form-input';
-import Button from '../../../../../UI/Button/Button';
-import { login } from '../../../../../../redux/userSlice';
+} from '../../hooks/useInputValidation';
+import { Subheading } from '../../components/UI/typography/typography';
+import { Input } from '../../components/UI/form-input/form-input';
+import Button from '../../components/UI/button/button';
+import { login } from '../../redux/userSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 

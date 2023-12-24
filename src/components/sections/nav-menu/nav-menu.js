@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ReactComponent as ArrDown } from '../../../img/nav-menu-arrow-down.svg';
 import styles from './nav-menu.module.scss';
-import LogoMain from '../../UI/LogoMain/logo-main';
-import WidthContainer from '../../UI/WidthContainer/container';
+import LogoMain from '../../UI/main-logo/logo-main';
+import WidthContainer from '../../UI/width-container/container';
 import { NavLink } from 'react-router-dom';
 import CartLink from './cart-link/cart-link';
 import Burger from './burger-button/burger';

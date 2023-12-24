@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from '../../UI/Button/Button';
-import { Heading, Subheading } from '../../UI/Typography/typography';
-import WidthContainer from '../../UI/WidthContainer/container';
+import Button from '../../UI/button/button';
+import { Heading, Subheading } from '../../UI/typography/typography';
+import WidthContainer from '../../UI/width-container/container';
 import NewsCard from './news-card/news-card';
 import Subscribe from './news-subscribe/news-subscribe';
 import styles from './news.module.scss';

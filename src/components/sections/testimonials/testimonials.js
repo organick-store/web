@@ -3,8 +3,8 @@ import styles from './testimonials.module.scss';
 import bgLeft from '../../../img/testimonials-left.png';
 import bgRight from '../../../img/testimonials-left.png';
 import BenefitCard from './benefit-card/benefit-card';
-import { Heading, Subheading } from '../../UI/Typography/typography';
-import WidthContainer from '../../UI/WidthContainer/container';
+import { Heading, Subheading } from '../../UI/typography/typography';
+import WidthContainer from '../../UI/width-container/container';
 import Feedback from './feedback/feedback';
 
 const Testimonials = () => {

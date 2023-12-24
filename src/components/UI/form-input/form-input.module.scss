@@ -1,4 +1,4 @@
-@import '../../../../../styles/main/colors.scss';
+@import '../../../styles/main/colors.scss';
 
 .label {
   font-family: 'Roboto', sans-serif;
@@ -28,7 +28,6 @@
   }
   .invalid {
     border-color: red;
-    background-color: #fbdada;
   }
   .textarea {
     height: 20rem;

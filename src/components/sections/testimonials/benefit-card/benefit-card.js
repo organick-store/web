@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './benefit-card.module.scss';
-import { Heading, Paragraph } from '../../../UI/Typography/typography';
+import { Heading, Paragraph } from '../../../UI/typography/typography';
 
 const BenefitCard = ({ heading, paragraph }) => {
   return (

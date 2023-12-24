@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux'; // Import Provider
 import { useNavigate } from 'react-router-dom';
-import Login from '../components/sections/order-confirmation/order-form/auth/login/login';
+import Login from '../pages/login/login';
 import { configureStore } from '@reduxjs/toolkit';
 import { userSlice } from '../redux/userSlice';
 

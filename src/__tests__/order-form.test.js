@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { userSlice } from '../redux/userSlice';
-import Form from '../components/sections/order-confirmation/order-form/auth/order-form';
+import Registration from '../pages/registration/registration';
 
 const store = configureStore(userSlice);
 
@@ -33,7 +33,7 @@ describe('Form component', () => {
 
     render(
       <Provider store={store}>
-        <Form />
+        <Registration />
       </Provider>,
     );
 
@@ -65,7 +65,7 @@ describe('Form component', () => {
 
     render(
       <Provider store={store}>
-        <Form />
+        <Registration />
       </Provider>,
     );
 

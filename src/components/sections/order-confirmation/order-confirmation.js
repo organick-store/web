@@ -35,7 +35,7 @@ const Order = () => {
       address: user.address,
     };
     try {
-      await OrderService.order(orderData);
+      await OrderService.createOrder(orderData);
       dispatch(clearCart());
       navigate('/success');
     } catch (error) {

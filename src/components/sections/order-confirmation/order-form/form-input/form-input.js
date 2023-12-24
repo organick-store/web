@@ -14,22 +14,22 @@ export const Input = ({
 }) => {
   return (
     // <>
-      <label className={inptStyles.label}>
-        {label}
-        {invalid && <span className={inptStyles.warn}>{warn}</span>}
-        <input
-          type={inptType}
-          placeholder={inptPlaceholder}
-          className={classNames(inptStyles.input, {
-            [inptStyles.invalid]: invalid,
-          })}
-          onChange={onChange}
-          onBlur={onBlur}
-          value={value}
-          required
-        />
-      </label>
-     // {/* <span className={inptStyles.warn}>{warn}</span> */}
+    <label className={inptStyles.label}>
+      {label}
+      {invalid && <span className={inptStyles.warn}>{warn}</span>}
+      <input
+        type={inptType}
+        placeholder={inptPlaceholder}
+        className={classNames(inptStyles.input, {
+          [inptStyles.invalid]: invalid,
+        })}
+        onChange={onChange}
+        onBlur={onBlur}
+        value={value}
+        required
+      />
+    </label>
+    // {/* <span className={inptStyles.warn}>{warn}</span> */}
     //{/* </> */}
   );
 };

@@ -1,10 +1,10 @@
 import logo from '../../../img/Logo.svg';
 import styles from './logo-main.module.scss';
-import React from 'react'; 
+import React from 'react';
 import { Heading } from '../Typography/typography';
 import { useNavigate } from 'react-router-dom';
 
- const LogoMain = () => {
+const LogoMain = () => {
   const navigate = useNavigate();
   return (
     <div className={styles.logo} onClick={() => navigate('/')}>
@@ -12,6 +12,6 @@ import { useNavigate } from 'react-router-dom';
       <Heading className={styles['logo-heading']}>Organick</Heading>
     </div>
   );
- } 
+};
 
- export default LogoMain;
+export default LogoMain;

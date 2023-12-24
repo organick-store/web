@@ -53,8 +53,8 @@ const Form = ({ bill }) => {
           email.value,
           password.value,
           phone.value,
-          address.value
-        )
+          address.value,
+        ),
       );
       if (success) {
         setRegistrationStatus(true);

@@ -5,7 +5,10 @@ import ProductQuantityInput from '../../../products/product-card/product-quantit
 import Button from '../../../../UI/Button/Button';
 import ProductPrice from '../../../products/product-card/product-price/product-price';
 import { useDispatch } from 'react-redux';
-import { removeItemFromCart, setCartItemQuantity } from '../../../../../redux/cartSlice';
+import {
+  removeItemFromCart,
+  setCartItemQuantity,
+} from '../../../../../redux/cartSlice';
 import ProductImg from '../../../products/product-card/product-image/product-image';
 
 const OrderElement = (props) => {
@@ -25,7 +28,11 @@ const OrderElement = (props) => {
 
   return (
     <div className={styles['product']}>
-      <ProductImg alt={props.name} image={props.image} className={styles['product-img']}/>
+      <ProductImg
+        alt={props.name}
+        image={props.image}
+        className={styles['product-img']}
+      />
       <div className={styles['product-wrapper']}>
         <Heading className={styles['product-name']}>{props.name}</Heading>
         <ProductPrice

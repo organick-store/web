@@ -65,6 +65,6 @@ export const validators = {
   phoneValidator: (value) => /^\d{10}$/.test(value),
   addressValidator: (value) => value.trim().length > 10,
   passwordValidator: (value) => /^(?=.*\d)(?=.*[a-z])[0-9a-z]{8,}$/.test(value),
-}
+};
 
 export default useInputValidation;

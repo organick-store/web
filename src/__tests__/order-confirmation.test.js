@@ -60,7 +60,7 @@ describe('Order component', () => {
     render(
       <Provider store={store}>
         <Order />
-      </Provider>
+      </Provider>,
     );
 
     const product1 = screen.getByText('Product 1');
@@ -82,7 +82,7 @@ describe('Order component', () => {
     render(
       <Provider store={store}>
         <Order />
-      </Provider>
+      </Provider>,
     );
 
     const emptyCartMessage = screen.getByText('There are no items in the cart');
@@ -103,7 +103,7 @@ describe('Order component', () => {
     render(
       <Provider store={store}>
         <Order />
-      </Provider>
+      </Provider>,
     );
 
     const orderButton = screen.getByText('Order');
@@ -124,7 +124,7 @@ describe('Order component', () => {
     render(
       <Provider store={store}>
         <Order />
-      </Provider>
+      </Provider>,
     );
 
     const orderButton = screen.getByText('Order');
@@ -157,7 +157,7 @@ describe('Order component', () => {
     render(
       <Provider store={store}>
         <Order />
-      </Provider>
+      </Provider>,
     );
 
     const orderButton = screen.getByText('Order');

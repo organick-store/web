@@ -36,7 +36,7 @@ const Products = () => {
 
   const selectProductHandler = (product_id) => {
     const selectedItem = productsData.find(
-      (element) => element.id === product_id
+      (element) => element.id === product_id,
     );
     setSelectedProduct(selectedItem);
   };
@@ -55,7 +55,7 @@ const Products = () => {
         Categories
       </Subheading>
       <Heading className={styles['categories-heading']}>Our Products</Heading>
-      {!productsData.length ?
+      {!productsData.length ? (
         <>
           <WidthContainer className={styles['categories__container']}>
             {showAll
@@ -69,10 +69,10 @@ const Products = () => {
           >
             {showAll ? 'Show Less' : 'Show More'}
           </Button>
-        </> : <Paragraph>
-          No products found
-        </Paragraph>
-      }
+        </>
+      ) : (
+        <Paragraph>No products found</Paragraph>
+      )}
       <ProductForm
         onOpenModal={openModalHandler}
         isShown={isModalOpened}

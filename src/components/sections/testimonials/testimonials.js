@@ -10,20 +10,21 @@ import Feedback from './feedback/feedback';
 const Testimonials = () => {
   return (
     <div className={styles.testimonials}>
-      <img src={bgLeft} className={styles['testimonials-bg--left']} alt="" />
-      <img src={bgRight} className={styles['testimonials-bg--right']} alt="" />
-      <Subheading className={styles['testimonials-subheading']}>Testimonial</Subheading>
+      <img src={bgLeft} className={styles['testimonials-bg--left']} alt='' />
+      <img src={bgRight} className={styles['testimonials-bg--right']} alt='' />
+      <Subheading className={styles['testimonials-subheading']}>
+        Testimonial
+      </Subheading>
       <Heading className={styles['testimonials-heading']}>
         What Our Customer Saying?
       </Heading>
-      <Feedback/>
+      <Feedback />
       <hr className={styles['testimonials-separate']} />
       <WidthContainer className={styles.benefits}>
-        <BenefitCard heading={'100%'} paragraph={'Organic'}/>
-        <BenefitCard heading={'285'} paragraph={'Active Product'}/>
-        <BenefitCard heading={'350+'} paragraph={'Organic Orchads'}/>
-        <BenefitCard heading={'25+'} paragraph={'Years of Farming'}/>
-        
+        <BenefitCard heading={'100%'} paragraph={'Organic'} />
+        <BenefitCard heading={'285'} paragraph={'Active Product'} />
+        <BenefitCard heading={'350+'} paragraph={'Organic Orchads'} />
+        <BenefitCard heading={'25+'} paragraph={'Years of Farming'} />
       </WidthContainer>
     </div>
   );

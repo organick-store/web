@@ -9,20 +9,19 @@ import EcoFriendlyAds from '../../components/sections/eco-friendly-ads/eco-frien
 import News from '../../components/sections/news/news';
 // import useFetchProducts from '../../components/fetch-products/fetch-products';
 
-
 const MainBody = () => {
   // useFetchProducts();
 
   return (
     <>
-      <Hero/>
-      <AboutAds/>
-      <About/>
-      <Products/>
-      <Testimonials/>
-      <EcoFriendly/>
-      <EcoFriendlyAds/>
-      <News/>
+      <Hero />
+      <AboutAds />
+      <About />
+      <Products />
+      <Testimonials />
+      <EcoFriendly />
+      <EcoFriendlyAds />
+      <News />
     </>
   );
 };

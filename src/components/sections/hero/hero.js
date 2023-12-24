@@ -18,7 +18,7 @@ const Hero = () => {
         <Button yellow showArrow>
           Explore Now
         </Button>
-        <DecoreGroup className={styles['hero__decores']}/>
+        <DecoreGroup className={styles['hero__decores']} />
       </WidthContainer>
     </div>
   );

@@ -34,14 +34,16 @@ describe('Form component', () => {
     render(
       <Provider store={store}>
         <Form />
-      </Provider>
+      </Provider>,
     );
 
     const nameInput = screen.getByLabelText('Full name*');
     const emailInput = screen.getByLabelText('Email address*');
     const addressInput = screen.getByLabelText('Address*');
     const phoneInput = screen.getByLabelText('Phone number*');
-    const passwordInput = screen.getByLabelText('Password(at least 8 characters)*');
+    const passwordInput = screen.getByLabelText(
+      'Password(at least 8 characters)*',
+    );
     const retypePasswordInput = screen.getByLabelText('Retype password*');
     const registerButton = screen.getByText('Register');
 
@@ -64,14 +66,16 @@ describe('Form component', () => {
     render(
       <Provider store={store}>
         <Form />
-      </Provider>
+      </Provider>,
     );
 
     const nameInput = screen.getByLabelText('Full name*');
     const emailInput = screen.getByLabelText('Email address*');
     const addressInput = screen.getByLabelText('Address*');
     const phoneInput = screen.getByLabelText('Phone number*');
-    const passwordInput = screen.getByLabelText('Password(at least 8 characters)*');
+    const passwordInput = screen.getByLabelText(
+      'Password(at least 8 characters)*',
+    );
     const retypePasswordInput = screen.getByLabelText('Retype password*');
     const registerButton = screen.getByText('Register');
 

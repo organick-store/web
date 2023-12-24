@@ -38,9 +38,12 @@ const NavMenu = () => {
           </div>
         </div>
         <div className={styles['nav-menu__controls']}>
-          <Burger isActive={isActiveBurger} isActiveHandler={isActiveBurgerHandler}/>
+          <Burger
+            isActive={isActiveBurger}
+            isActiveHandler={isActiveBurgerHandler}
+          />
           <CartLink className={styles['nav-menu__controls-btn']} />
-          <Profile className={styles['nav-menu__profile']}/>
+          <Profile className={styles['nav-menu__profile']} />
         </div>
       </WidthContainer>
     </nav>

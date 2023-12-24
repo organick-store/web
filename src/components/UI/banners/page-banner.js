@@ -1,15 +1,19 @@
-import React from 'react'; 
+import React from 'react';
 import { Heading } from '../Typography/typography';
 import styles from './page-banner.module.scss';
 import classNames from 'classnames';
 
- const Banner = ({children, heading, className, headingClassName}) => {
+const Banner = ({ children, heading, className, headingClassName }) => {
   return (
-    <div className={classNames(styles.banner, className)}> 
-      <Heading className={classNames(styles['banner-heading'], headingClassName)}>{heading}</Heading>
+    <div className={classNames(styles.banner, className)}>
+      <Heading
+        className={classNames(styles['banner-heading'], headingClassName)}
+      >
+        {heading}
+      </Heading>
       {children}
     </div>
   );
- }
+};
 
- export default Banner;
+export default Banner;

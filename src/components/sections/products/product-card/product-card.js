@@ -26,7 +26,11 @@ const ProductCard = ({
   return (
     <div className={styles.product} onClick={selectProduct}>
       <Button className={styles['product-tag']}>{product.type}</Button>
-      <ProductImg image={product.image} alt={product.name} className={styles['product-img']} />
+      <ProductImg
+        image={product.image}
+        alt={product.name}
+        className={styles['product-img']}
+      />
       <div className={styles['product__description']}>
         <Heading className={styles['product__description-heading']}>
           {product.name}

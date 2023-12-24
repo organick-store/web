@@ -3,9 +3,7 @@ import styles from './typography.module.scss';
 import classNames from 'classnames';
 
 export const Heading = ({ children, className }) => {
-  return (
-    <h2 className={classNames(styles.heading, className)}>{children}</h2>
-  );
+  return <h2 className={classNames(styles.heading, className)}>{children}</h2>;
 };
 
 export const Subheading = ({ children, className }) => {
@@ -15,13 +13,9 @@ export const Subheading = ({ children, className }) => {
 };
 
 export const Paragraph = ({ children, className }) => {
-  return (
-    <p className={classNames(styles.paragraph, className)}>{children}</p>
-  );
+  return <p className={classNames(styles.paragraph, className)}>{children}</p>;
 };
 
 export const HeroHeading = ({ children, className }) => {
-  return (
-    <h1 className={classNames(styles.heading, className)}>{children}</h1>
-  );
+  return <h1 className={classNames(styles.heading, className)}>{children}</h1>;
 };

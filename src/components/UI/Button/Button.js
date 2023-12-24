@@ -23,7 +23,7 @@ const Button = ({
       className={classNames(
         styles.button,
         { [styles['button-yllw']]: yellow, [styles['button-wht']]: white },
-        className
+        className,
       )}
     >
       {children}

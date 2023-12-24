@@ -8,7 +8,7 @@ const cartSlice = createSlice({
   reducers: {
     addItemToCart(state, action) {
       const itemIndex = state.products.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item.id === action.payload.id,
       );
       state.cartCounter += action.payload.quantity;
       if (itemIndex === -1) {
@@ -19,18 +19,18 @@ const cartSlice = createSlice({
     },
     removeItemFromCart(state, action) {
       state.products = state.products.filter(
-        (item) => item.id !== action.payload.id
+        (item) => item.id !== action.payload.id,
       );
       state.cartCounter -= action.payload.quantity;
     },
     setCartItemQuantity(state, action) {
       const itemIndex = state.products.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item.id === action.payload.id,
       );
       state.products[itemIndex].quantity = action.payload.quantity;
       state.cartCounter = state.products.reduce(
         (acc, cur) => (acc += cur.quantity),
-        0
+        0,
       );
     },
     clearCart(state, action) {

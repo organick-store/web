@@ -6,7 +6,7 @@ import veganFood from '../../../img/about-vegan-food.svg';
 import aboutMailbox from '../../../img/about-mailbox-quality.svg';
 import Button from '../../UI/Button/Button';
 import { Heading, Subheading, Paragraph } from '../../UI/Typography/typography';
-import WidthContainer from '../../UI/WidthContainer/container'; 
+import WidthContainer from '../../UI/WidthContainer/container';
 
 const About = () => {
   return (
@@ -16,7 +16,9 @@ const About = () => {
           <img src={aboutImg} alt='' />
         </div>
         <div className={styles['about__description']}>
-          <Subheading className={styles['about__description-subheading']}>About Us</Subheading>
+          <Subheading className={styles['about__description-subheading']}>
+            About Us
+          </Subheading>
           <Heading className={styles['about__description-heading']}>
             We Believe in Working Accredited Farmers
           </Heading>
@@ -37,9 +39,7 @@ const About = () => {
               img={aboutMailbox}
             />
           </div>
-          <Button showArrow>
-            Shop Now
-          </Button>
+          <Button showArrow>Shop Now</Button>
         </div>
       </WidthContainer>
     </div>

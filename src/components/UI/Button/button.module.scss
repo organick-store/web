@@ -15,13 +15,13 @@
   width: fit-content;
   transition: box-shadow 0.3s ease;
   &:hover {
-    background-color: #2F5463;
+    background-color: #2f5463;
   }
   &-yllw {
     background-color: $color-primary-yellow;
     color: $color-primary-blue;
     &:hover {
-      background-color: #EDDB7A;
+      background-color: #eddb7a;
     }
   }
   &-wht {

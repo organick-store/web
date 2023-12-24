@@ -60,7 +60,7 @@ describe('Products component', () => {
     render(
       <Provider store={store}>
         <Products />
-      </Provider>
+      </Provider>,
     );
   };
 

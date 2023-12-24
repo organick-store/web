@@ -12,7 +12,7 @@ const CartLink = ({ className }) => {
     <div className={classNames(styles.cart, className)}>
       <IconLink linkTo='/cart' className={styles['cart-btn']}>
         <Cart />
-        <p className={cartCounter > 0 ? styles['cart-popup']: ''}>
+        <p className={cartCounter > 0 ? styles['cart-popup'] : ''}>
           {cartCounter}
         </p>
       </IconLink>

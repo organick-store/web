@@ -32,7 +32,7 @@ const NotFound = () => {
           </Button>
         </div>
       </WidthContainer>
-      <NotFoundDecores className={styles['not-found-decores']}/>
+      <NotFoundDecores className={styles['not-found-decores']} />
     </div>
   );
 };

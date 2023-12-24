@@ -20,7 +20,7 @@ const Order = () => {
       acc.discount += +curr.discount * +curr.quantity;
       return acc;
     },
-    { price: 0, discount: 0 }
+    { price: 0, discount: 0 },
   );
 
   const createOrder = async () => {

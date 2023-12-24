@@ -30,13 +30,15 @@ describe('Login component', () => {
     useNavigate.mockReturnValue(mockNavigate);
 
     render(
-      <Provider store={store}> {/* Provide the Redux store */}
+      <Provider store={store}>
+        {' '}
+        {/* Provide the Redux store */}
         <Login />
-      </Provider>
+      </Provider>,
     );
     const emailInput = screen.getByLabelText('Email address*');
     const passwordInput = screen.getByLabelText(
-      'Password(at least 8 characters)*'
+      'Password(at least 8 characters)*',
     );
     const loginButton = screen.getAllByRole('button')[0];
 
@@ -54,13 +56,15 @@ describe('Login component', () => {
     useNavigate.mockReturnValue(mockNavigate);
 
     render(
-      <Provider store={store}> {/* Provide the Redux store */}
+      <Provider store={store}>
+        {' '}
+        {/* Provide the Redux store */}
         <Login />
-      </Provider>
+      </Provider>,
     );
     const emailInput = screen.getByLabelText('Email address*');
     const passwordInput = screen.getByLabelText(
-      'Password(at least 8 characters)*'
+      'Password(at least 8 characters)*',
     );
     const loginButton = screen.getAllByRole('button')[0];
 
@@ -78,16 +82,17 @@ describe('Login component', () => {
     useNavigate.mockReturnValue(mockNavigate);
 
     render(
-      <Provider store={store}> {/* Provide the Redux store */}
+      <Provider store={store}>
+        {' '}
+        {/* Provide the Redux store */}
         <Login />
-      </Provider>
+      </Provider>,
     );
     const emailInput = screen.getByLabelText('Email address*');
     const passwordInput = screen.getByLabelText(
-      'Password(at least 8 characters)*'
+      'Password(at least 8 characters)*',
     );
     const loginButton = screen.getAllByRole('button')[0];
-
 
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
     fireEvent.change(passwordInput, { target: { value: 'pass' } });
@@ -96,6 +101,5 @@ describe('Login component', () => {
     // Now, assert that the mockLogin function was not called
     expect(mockLogin).not.toHaveBeenCalled();
     expect(mockNavigate).not.toHaveBeenCalled();
-
   });
 });

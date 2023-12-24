@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'; 
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import WidthContainer from '../UI/WidthContainer/container';
 import styles from './activateAccount.module.scss';

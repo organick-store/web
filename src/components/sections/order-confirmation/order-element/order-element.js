@@ -11,34 +11,31 @@ import {
 } from '../../../../redux/cartSlice';
 import ProductImg from '../../products/product-card/product-image/product-image';
 
-const OrderElement = (props) => {
-  const [inputQuantity, setInputQuantity] = useState(props.quantity || '');
+const OrderElement = ({ product }) => {
+  const dispatch = useDispatch();
+  const [inputQuantity, setInputQuantity] = useState(product.quantity || '');
 
   const inputQuantityHandler = (e) => {
     setInputQuantity(+e.target.value);
-    dispatch(setCartItemQuantity({ quantity: +e.target.value, id: props.id }));
+    dispatch(setCartItemQuantity({ quantity: +e.target.value, id: product.id }));
   };
-
-  const dispatch = useDispatch();
 
   const removeFromCartHandler = (e) => {
     e.preventDefault();
-    dispatch(removeItemFromCart({ id: props.id, quantity: props.quantity }));
+    dispatch(removeItemFromCart({ id: product.id, quantity: product.quantity }));
   };
 
   return (
     <div className={styles['product']}>
       <ProductImg
-        alt={props.name}
-        image={props.image}
+        product={product}
         className={styles['product-img']}
       />
       <div className={styles['product-wrapper']}>
-        <Heading className={styles['product-name']}>{props.name}</Heading>
+        <Heading className={styles['product-name']}>{product.name}</Heading>
         <ProductPrice
           className={styles['product-price']}
-          price={props.price}
-          discount={props.discount}
+          product={product}
         />
       </div>
       <ProductQuantityInput

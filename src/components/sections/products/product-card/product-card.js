@@ -7,15 +7,9 @@ import ProductPrice from './product-price/product-price';
 import ProductImg from './product-image/product-image';
 
 const ProductCard = ({
-  // type,
-  // name,
-  // price,
-  // discount,
   product,
   onOpenModal,
   onSelectItem,
-  // id,
-  // image,
 }) => {
   const selectProduct = () => {
     if (!onOpenModal) return;
@@ -27,8 +21,7 @@ const ProductCard = ({
     <div className={styles.product} onClick={selectProduct}>
       <Button className={styles['product-tag']}>{product.type}</Button>
       <ProductImg
-        image={product.image}
-        alt={product.name}
+        product={product}
         className={styles['product-img']}
       />
       <div className={styles['product__description']}>
@@ -37,7 +30,7 @@ const ProductCard = ({
         </Heading>
         <hr className={styles['product__description-separator']} />
         <p className={styles['product__description__parameters']}>
-          <ProductPrice price={product.price} discount={product.discount} />
+          <ProductPrice product={product} />
           <Rating className={styles['rate']} />
         </p>
       </div>

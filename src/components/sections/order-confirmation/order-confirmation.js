@@ -17,7 +17,7 @@ const Order = () => {
   const bill = cart.reduce(
     (acc, curr) => {
       acc.price += +curr.price * +curr.quantity;
-      acc.discount += +curr.discount * +curr.quantity;
+      acc.discount += (+curr?.discount || 0) * +curr.quantity;
       return acc;
     },
     { price: 0, discount: 0 },
@@ -55,13 +55,8 @@ const Order = () => {
 
   const OrderedProductsList = cart.map((product) => (
     <OrderElement
-      name={product.name}
-      price={product.price}
-      discount={product.discount}
       key={product.id}
-      id={product.id}
-      image={product.image}
-      quantity={product.quantity}
+      product={product}
     />
   ));
 

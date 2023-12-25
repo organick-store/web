@@ -12,7 +12,7 @@ import { addItemToCart } from '../../../../redux/cartSlice';
 import classNames from 'classnames';
 import ProductImg from '../product-card/product-image/product-image';
 
-const ProductModal = ({ onOpenModal, isShown, selectedProduct: product }) => {
+const ProductModal = ({ isOpen, onClose, product }) => {
   const dispatch = useDispatch();
   const [inputQuantity, setInputQuantity] = useState(1);
   const [productInfo, setProductInfo] = useState({
@@ -30,12 +30,12 @@ const ProductModal = ({ onOpenModal, isShown, selectedProduct: product }) => {
   };
 
   useEffect(() => {
-    if (isShown) {
+    if (isOpen) {
       handleButtonClick('desc-btn', product?.description);
       document.body.classList.add('no-scroll');
     }
     return () => document.body.classList.remove('no-scroll');
-  }, [isShown, product?.description]);
+  }, [isOpen, product?.description]);
 
   const addToCartHandler = () => {
     if (inputQuantity < 1) return;
@@ -48,13 +48,13 @@ const ProductModal = ({ onOpenModal, isShown, selectedProduct: product }) => {
       image: product?.image,
     };
     dispatch(addItemToCart(addedItem));
-    onOpenModal();
+    onClose();
   };
 
   return (
     <CSSTransition
       nodeRef={nodeRef}
-      in={isShown}
+      in={isOpen}
       timeout={300}
       classNames={{
         enter: '',
@@ -80,7 +80,7 @@ const ProductModal = ({ onOpenModal, isShown, selectedProduct: product }) => {
               <Heading className={styles['product-name']}>{product?.name}</Heading>
               <Rating />
               <br />
-              <ProductPrice price={product?.price} discount={product?.discount} />
+              <ProductPrice product={product} />
               <Paragraph className={styles['product-paragraph']}>
                 {product?.overview}
               </Paragraph>
@@ -124,7 +124,7 @@ const ProductModal = ({ onOpenModal, isShown, selectedProduct: product }) => {
               {productInfo.text}
             </Paragraph>
           </div>
-          <Button onClick={onOpenModal} className={styles['product-close']}>
+          <Button onClick={onClose} className={styles['product-close']}>
             X
           </Button>
         </WidthContainer>

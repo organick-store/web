@@ -9,16 +9,10 @@ import ProductImg from './product-image/product-image';
 const ProductCard = ({
   product,
   onOpenModal,
-  onSelectItem,
 }) => {
-  const selectProduct = () => {
-    if (!onOpenModal) return;
-    onOpenModal();
-    onSelectItem(product.id);
-  };
 
   return (
-    <div className={styles.product} onClick={selectProduct}>
+    <div className={styles.product} onClick={onOpenModal}>
       <Button className={styles['product-tag']}>{product.type}</Button>
       <ProductImg
         product={product}

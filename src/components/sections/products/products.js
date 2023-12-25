@@ -1,21 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ProductCard from './product-card/product-card';
 import { Subheading, Heading, Paragraph } from '../../UI/typography/typography';
 import Button from '../../UI/button/button';
 import styles from './products.module.scss';
 import WidthContainer from '../../UI/width-container/container';
-import ProductForm from './products-modal/products-modal';
-import ProductBackdrop from './products-modal/product-backdrop';
 import CartLink from '../nav-menu/cart-link/cart-link';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../../redux/productsSlice';
+import ModalContext from '../../../context/product-modal';
 
 const Products = () => {
-  const [isModalOpened, setIsModalOpened] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
   const [showAll, setShowAll] = useState(false);
   const dispatch = useDispatch();
-
+  const { onOpen: onOpenModal } = useContext(ModalContext);
   const counter = useSelector((state) => state.cart.cartCounter);
 
   useEffect(() => {
@@ -29,24 +26,11 @@ const Products = () => {
     setShowAll(!showAll);
   };
 
-  const openModalHandler = (e) => {
-    e?.preventDefault();
-    setIsModalOpened((prev) => !prev);
-  };
-
-  const selectProductHandler = (product_id) => {
-    const selectedItem = productsData.find(
-      (element) => element.id === product_id,
-    );
-    setSelectedProduct(selectedItem);
-  };
-
   const productsList = productsData.map((product) => (
     <ProductCard
       key={product.name}
       product={product}
-      onOpenModal={openModalHandler}
-      onSelectItem={selectProductHandler}
+      onOpenModal={() => onOpenModal(product)}
     />
   ));
 
@@ -73,16 +57,6 @@ const Products = () => {
         </>
       ) : (
         <Paragraph>No products found</Paragraph>
-      )}
-      <ProductForm
-        onOpenModal={openModalHandler}
-        isShown={isModalOpened}
-        selectedProduct={selectedProduct}
-      />
-      {isModalOpened && (
-        <>
-          <ProductBackdrop onOpenModal={openModalHandler} />
-        </>
       )}
       {counter > 0 && <CartLink className={styles['cart-link']} />}
     </div>

@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import store from '../redux/store';
 import Products from '../components/sections/products/products';
+import { ModalProvider } from '../context/product-modal';
 
 const mockFetchProducts = jest.fn();
 
@@ -22,8 +23,8 @@ jest.mock('../services/ProductService.js', () => {
     getAll: () => mockFetchProducts(),
   };
 });
-jest.mock('../services/OrderService.js', () => {});
-jest.mock('../services/AuthService.js', () => {});
+jest.mock('../services/OrderService.js', () => { });
+jest.mock('../services/AuthService.js', () => { });
 
 describe('Products component', () => {
   beforeEach(() => {
@@ -56,18 +57,14 @@ describe('Products component', () => {
     },
   ];
 
-  const renderProductComponent = () => {
+  test('renders products correctly', () => {
+    useSelector.mockReturnValue(mockProducts);
+
     render(
       <Provider store={store}>
         <Products />
       </Provider>,
     );
-  };
-
-  test('renders products correctly', () => {
-    useSelector.mockReturnValue(mockProducts);
-
-    renderProductComponent();
 
     const product1 = screen.getByText('Product 1');
     const product1Price = screen.getByText('$10.00');
@@ -81,7 +78,11 @@ describe('Products component', () => {
   test('toggles showAll state when "Show More" button is clicked', () => {
     useSelector.mockReturnValue(mockProducts);
 
-    renderProductComponent();
+    render(
+      <Provider store={store}>
+        <Products />
+      </Provider>,
+    );
 
     const showMoreButton = screen.getByText('Show More');
 
@@ -93,7 +94,11 @@ describe('Products component', () => {
   test('shows all products when "Show More" is clicked', () => {
     useSelector.mockReturnValue(mockProducts);
 
-    renderProductComponent();
+    render(
+      <Provider store={store}>
+        <Products />
+      </Provider>,
+    );
 
     const showMoreButton = screen.getByText('Show More');
 
@@ -109,7 +114,11 @@ describe('Products component', () => {
   test('shows only 1 product when "Show Less" is clicked', () => {
     useSelector.mockReturnValue(mockProducts);
 
-    renderProductComponent();
+    render(
+      <Provider store={store}>
+        <Products />
+      </Provider>,
+    );
 
     const showMoreButton = screen.getByText('Show More');
 
@@ -126,7 +135,13 @@ describe('Products component', () => {
   test('opens modal when product card is clicked', async () => {
     useSelector.mockReturnValue(mockProducts);
 
-    renderProductComponent();
+    render(
+      <Provider store={store}>
+        <ModalProvider>
+          <Products />
+        </ModalProvider>
+      </Provider>,
+    )
 
     fireEvent.click(screen.getByText('Product 1'));
 
@@ -138,7 +153,13 @@ describe('Products component', () => {
 
   test('renders products details: overview, toggles between description and additional info', async () => {
     useSelector.mockReturnValue(mockProducts);
-    renderProductComponent();
+    render(
+      <Provider store={store}>
+        <ModalProvider>
+          <Products />
+        </ModalProvider>
+      </Provider>,
+    )
 
     fireEvent.click(screen.getByText('Product 1'));
 
@@ -163,7 +184,13 @@ describe('Products component', () => {
 
   test('updates input quantity correctly', async () => {
     useSelector.mockReturnValue(mockProducts);
-    renderProductComponent();
+    render(
+      <Provider store={store}>
+        <ModalProvider>
+          <Products />
+        </ModalProvider>
+      </Provider>,
+    )
 
     fireEvent.click(screen.getByText('Product 1'));
 
@@ -177,7 +204,13 @@ describe('Products component', () => {
 
   test('dispatches addItemToCart action when "Add To Cart" button is clicked', () => {
     useSelector.mockReturnValue(mockProducts);
-    renderProductComponent();
+    render(
+      <Provider store={store}>
+        <ModalProvider>
+          <Products />
+        </ModalProvider>
+      </Provider>,
+    )
 
     fireEvent.click(screen.getByText('Product 1'));
 
@@ -197,7 +230,13 @@ describe('Products component', () => {
 
   test('close modal when "X" button is clicked', async () => {
     useSelector.mockReturnValue(mockProducts);
-    renderProductComponent();
+    render(
+      <Provider store={store}>
+        <ModalProvider>
+          <Products />
+        </ModalProvider>
+      </Provider>,
+    )
 
     fireEvent.click(screen.getByText('Product 1'));
 
@@ -217,7 +256,13 @@ describe('Products component', () => {
 
   test('close modal when "Add To Cart" button is clicked', async () => {
     useSelector.mockReturnValue(mockProducts);
-    renderProductComponent();
+    render(
+      <Provider store={store}>
+        <ModalProvider>
+          <Products />
+        </ModalProvider>
+      </Provider>,
+    )
 
     fireEvent.click(screen.getByText('Product 1'));
 

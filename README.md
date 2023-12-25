@@ -43,14 +43,14 @@ In my project, I utilized [React Redux](https://redux.js.org/) to manage the sta
 
 `git clone (https://github.com/organick-store/web)`
 
-2. Change directory to organick:
+2. Change directory
 
-`cd organick/`
+`cd web/`
 
 3. Install project dependencies
 
 `npm install`
 
-4. Start liveserver
+4. Start live server
 
 `npm start`

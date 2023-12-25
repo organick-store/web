@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './order-confirmation.module.scss';
-import Button from '../../UI/Button/Button';
-import { Heading } from '../../UI/Typography/typography';
-import WidthContainer from '../../UI/WidthContainer/container';
-import OrderElement from './order-form/order-element/order-element';
+import Button from '../../UI/button/button';
+import { Heading } from '../../UI/typography/typography';
+import WidthContainer from '../../UI/width-container/container';
+import OrderElement from './order-element/order-element';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { clearCart } from '../../../redux/cartSlice';
@@ -17,10 +17,10 @@ const Order = () => {
   const bill = cart.reduce(
     (acc, curr) => {
       acc.price += +curr.price * +curr.quantity;
-      acc.discount += +curr.discount * +curr.quantity;
+      acc.discount += (+curr?.discount || 0) * +curr.quantity;
       return acc;
     },
-    { price: 0, discount: 0 }
+    { price: 0, discount: 0 },
   );
 
   const createOrder = async () => {
@@ -35,7 +35,7 @@ const Order = () => {
       address: user.address,
     };
     try {
-      await OrderService.order(orderData);
+      await OrderService.createOrder(orderData);
       dispatch(clearCart());
       navigate('/success');
     } catch (error) {
@@ -55,13 +55,8 @@ const Order = () => {
 
   const OrderedProductsList = cart.map((product) => (
     <OrderElement
-      name={product.name}
-      price={product.price}
-      discount={product.discount}
       key={product.id}
-      id={product.id}
-      image={product.image}
-      quantity={product.quantity}
+      product={product}
     />
   ));
 

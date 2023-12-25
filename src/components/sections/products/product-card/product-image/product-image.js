@@ -2,11 +2,11 @@ import React from 'react';
 import styles from './product-image.module.scss';
 import classNames from 'classnames';
 
-const ProductImg = ({name, image, className}) => {
+const ProductImg = ({ product, className }) => {
   return (
     <img
-      alt={name}
-      src={image}
+      alt={product?.name || ''}
+      src={product?.image || ''}
       className={classNames(styles.img, className)}
     ></img>
   );

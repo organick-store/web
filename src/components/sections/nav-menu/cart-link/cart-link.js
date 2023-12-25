@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading } from '../../../UI/Typography/typography';
+import { Heading } from '../../../UI/typography/typography';
 import styles from './cart-link.module.scss';
 import { useSelector } from 'react-redux';
 import { ReactComponent as Cart } from '../../../../img/nav-menu-cart.svg';
@@ -12,7 +12,7 @@ const CartLink = ({ className }) => {
     <div className={classNames(styles.cart, className)}>
       <IconLink linkTo='/cart' className={styles['cart-btn']}>
         <Cart />
-        <p className={cartCounter > 0 ? styles['cart-popup']: ''}>
+        <p className={cartCounter > 0 ? styles['cart-popup'] : ''}>
           {cartCounter}
         </p>
       </IconLink>

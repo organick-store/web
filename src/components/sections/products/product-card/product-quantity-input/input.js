@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './input.module.scss';
 import classNames from 'classnames';
 
-const ProductQuantityInput = ({inputQuantity, inputQuantityHandler}) => {
+const ProductQuantityInput = ({ inputQuantity, inputQuantityHandler }) => {
   return (
     <label className={styles['quantity']}>
       Quantity:

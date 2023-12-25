@@ -1,1 +1,1 @@
-module.exports = 'div'
+module.exports = 'div';

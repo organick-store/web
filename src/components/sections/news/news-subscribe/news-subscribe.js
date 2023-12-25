@@ -1,8 +1,8 @@
 import React from 'react';
-import WidthContainer from '../../../UI/WidthContainer/container';
+import WidthContainer from '../../../UI/width-container/container';
 import styles from './news-subscribe.module.scss';
-import { Heading } from '../../../UI/Typography/typography';
-import Button from '../../../UI/Button/Button';
+import { Heading } from '../../../UI/typography/typography';
+import Button from '../../../UI/button/button';
 
 const Subscribe = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import Banner from './about-banner/about-banner';
-import WidthContainer from '../../UI/WidthContainer/container';
+import WidthContainer from '../../UI/width-container/container';
 import styles from './about-ads.module.scss';
 
 const AboutAds = () => {

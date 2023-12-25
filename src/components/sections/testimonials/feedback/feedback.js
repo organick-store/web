@@ -1,6 +1,6 @@
 import React from 'react';
-import WidthContainer from '../../../UI/WidthContainer/container';
-import { Heading, Paragraph } from '../../../UI/Typography/typography';
+import WidthContainer from '../../../UI/width-container/container';
+import { Heading, Paragraph } from '../../../UI/typography/typography';
 import styles from './feedback.module.scss';
 import avatar1 from '../../../../img/testimonials-avatar1.jpg';
 import stars from '../../../../img/5-stars.svg';

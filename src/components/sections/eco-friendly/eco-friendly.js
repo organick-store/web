@@ -1,6 +1,6 @@
 import React from 'react';
-import { Heading, Subheading } from '../../UI/Typography/typography';
-import WidthContainer from '../../UI/WidthContainer/container';
+import { Heading, Subheading } from '../../UI/typography/typography';
+import WidthContainer from '../../UI/width-container/container';
 import AboutCard from '../about/about-card/about-card';
 import styles from './eco-friendly.module.scss';
 

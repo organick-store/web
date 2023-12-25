@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styles from './products-modal.module.scss';
 import { ReactComponent as Rating } from '../../../../img/5-stars.svg';
-import { Heading, Paragraph } from '../../../UI/Typography/typography';
+import { Heading, Paragraph } from '../../../UI/typography/typography';
 import ProductPrice from '../product-card/product-price/product-price';
-import Button from '../../../UI/Button/Button';
-import WidthContainer from '../../../UI/WidthContainer/container';
+import Button from '../../../UI/button/button';
+import WidthContainer from '../../../UI/width-container/container';
 import ProductQuantityInput from '../product-card/product-quantity-input/input';
 import { CSSTransition } from 'react-transition-group';
 import { useDispatch } from 'react-redux';
@@ -12,7 +12,7 @@ import { addItemToCart } from '../../../../redux/cartSlice';
 import classNames from 'classnames';
 import ProductImg from '../product-card/product-image/product-image';
 
-const ProductForm = ({ onOpenModal, isShown, selectedProduct }) => {
+const ProductModal = ({ isOpen, onClose, product }) => {
   const dispatch = useDispatch();
   const [inputQuantity, setInputQuantity] = useState(1);
   const [productInfo, setProductInfo] = useState({
@@ -20,16 +20,6 @@ const ProductForm = ({ onOpenModal, isShown, selectedProduct }) => {
     text: null,
   });
   const nodeRef = useRef(null);
-  const {
-    name,
-    price,
-    discount,
-    id,
-    image,
-    overview,
-    description,
-    additionalInfo,
-  } = selectedProduct || {};
 
   const handleButtonClick = (button, text) => {
     setProductInfo({ activeButton: button, text: text });
@@ -40,31 +30,31 @@ const ProductForm = ({ onOpenModal, isShown, selectedProduct }) => {
   };
 
   useEffect(() => {
-    if (isShown) {
-      handleButtonClick('desc-btn', description);
+    if (isOpen) {
+      handleButtonClick('desc-btn', product?.description);
       document.body.classList.add('no-scroll');
     }
     return () => document.body.classList.remove('no-scroll');
-  }, [isShown, description]);
+  }, [isOpen, product?.description]);
 
   const addToCartHandler = () => {
     if (inputQuantity < 1) return;
     const addedItem = {
-      name: name,
-      price: price,
-      discount: discount,
+      name: product.name,
+      price: product.price,
+      discount: product.discount,
       quantity: inputQuantity,
-      id: id,
-      image: image,
+      id: product.id,
+      image: product?.image,
     };
     dispatch(addItemToCart(addedItem));
-    onOpenModal();
+    onClose();
   };
 
   return (
     <CSSTransition
       nodeRef={nodeRef}
-      in={isShown}
+      in={isOpen}
       timeout={300}
       classNames={{
         enter: '',
@@ -83,16 +73,16 @@ const ProductForm = ({ onOpenModal, isShown, selectedProduct }) => {
         <WidthContainer className={styles['product__container']}>
           <div className={styles['product__details']}>
             <ProductImg
-              image={image}
+              image={product?.image}
               className={styles['product__details-img']}
             />
             <div className={styles['product__details-info']}>
-              <Heading className={styles['product-name']}>{name}</Heading>
+              <Heading className={styles['product-name']}>{product?.name}</Heading>
               <Rating />
               <br />
-              <ProductPrice price={price} discount={discount} />
+              <ProductPrice product={product} />
               <Paragraph className={styles['product-paragraph']}>
-                {overview}
+                {product?.overview}
               </Paragraph>
               <div className={styles['product__controls']}>
                 <ProductQuantityInput
@@ -116,7 +106,7 @@ const ProductForm = ({ onOpenModal, isShown, selectedProduct }) => {
                   [styles['product__buttons--active']]:
                     productInfo.activeButton === 'desc-btn',
                 })}
-                onClick={() => handleButtonClick('desc-btn', description)}
+                onClick={() => handleButtonClick('desc-btn', product.description)}
               >
                 Product Description
               </Button>
@@ -125,7 +115,7 @@ const ProductForm = ({ onOpenModal, isShown, selectedProduct }) => {
                   [styles['product__buttons--active']]:
                     productInfo.activeButton === 'add-btn',
                 })}
-                onClick={() => handleButtonClick('add-btn', additionalInfo)}
+                onClick={() => handleButtonClick('add-btn', product.additionalInfo)}
               >
                 Additional Info
               </Button>
@@ -134,7 +124,7 @@ const ProductForm = ({ onOpenModal, isShown, selectedProduct }) => {
               {productInfo.text}
             </Paragraph>
           </div>
-          <Button onClick={onOpenModal} className={styles['product-close']}>
+          <Button onClick={onClose} className={styles['product-close']}>
             X
           </Button>
         </WidthContainer>
@@ -143,4 +133,4 @@ const ProductForm = ({ onOpenModal, isShown, selectedProduct }) => {
   );
 };
 
-export default ProductForm;
+export default ProductModal;

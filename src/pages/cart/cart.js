@@ -5,8 +5,8 @@ import CartBanner from '../../components/UI/banners/cart-banner/cart-banner';
 const CartBody = () => {
   return (
     <>
-      <CartBanner/>
-      <Order/>
+      <CartBanner />
+      <Order />
     </>
   );
 };

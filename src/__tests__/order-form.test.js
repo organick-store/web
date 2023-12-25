@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { userSlice } from '../redux/userSlice';
-import Form from '../components/sections/order-confirmation/order-form/auth/order-form';
+import Registration from '../pages/registration/registration';
 
 const store = configureStore(userSlice);
 
@@ -33,15 +33,17 @@ describe('Form component', () => {
 
     render(
       <Provider store={store}>
-        <Form />
-      </Provider>
+        <Registration />
+      </Provider>,
     );
 
     const nameInput = screen.getByLabelText('Full name*');
     const emailInput = screen.getByLabelText('Email address*');
     const addressInput = screen.getByLabelText('Address*');
     const phoneInput = screen.getByLabelText('Phone number*');
-    const passwordInput = screen.getByLabelText('Password(at least 8 characters)*');
+    const passwordInput = screen.getByLabelText(
+      'Password(at least 8 characters)*',
+    );
     const retypePasswordInput = screen.getByLabelText('Retype password*');
     const registerButton = screen.getByText('Register');
 
@@ -53,7 +55,9 @@ describe('Form component', () => {
     fireEvent.change(retypePasswordInput, { target: { value: 'password123' } });
     fireEvent.click(registerButton);
 
-    expect(mockRegistration).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(mockRegistration).toHaveBeenCalledTimes(1);
+    });
     expect(mockNavigate).not.toHaveBeenCalled();
   });
 
@@ -63,15 +67,17 @@ describe('Form component', () => {
 
     render(
       <Provider store={store}>
-        <Form />
-      </Provider>
+        <Registration />
+      </Provider>,
     );
 
     const nameInput = screen.getByLabelText('Full name*');
     const emailInput = screen.getByLabelText('Email address*');
     const addressInput = screen.getByLabelText('Address*');
     const phoneInput = screen.getByLabelText('Phone number*');
-    const passwordInput = screen.getByLabelText('Password(at least 8 characters)*');
+    const passwordInput = screen.getByLabelText(
+      'Password(at least 8 characters)*',
+    );
     const retypePasswordInput = screen.getByLabelText('Retype password*');
     const registerButton = screen.getByText('Register');
 

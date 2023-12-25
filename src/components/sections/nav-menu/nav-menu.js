@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ReactComponent as ArrDown } from '../../../img/nav-menu-arrow-down.svg';
 import styles from './nav-menu.module.scss';
-import LogoMain from '../../UI/LogoMain/logo-main';
-import WidthContainer from '../../UI/WidthContainer/container';
+import LogoMain from '../../UI/main-logo/logo-main';
+import WidthContainer from '../../UI/width-container/container';
 import { NavLink } from 'react-router-dom';
 import CartLink from './cart-link/cart-link';
 import Burger from './burger-button/burger';
@@ -38,9 +38,12 @@ const NavMenu = () => {
           </div>
         </div>
         <div className={styles['nav-menu__controls']}>
-          <Burger isActive={isActiveBurger} isActiveHandler={isActiveBurgerHandler}/>
+          <Burger
+            isActive={isActiveBurger}
+            isActiveHandler={isActiveBurgerHandler}
+          />
           <CartLink className={styles['nav-menu__controls-btn']} />
-          <Profile className={styles['nav-menu__profile']}/>
+          <Profile className={styles['nav-menu__profile']} />
         </div>
       </WidthContainer>
     </nav>

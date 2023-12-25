@@ -7,22 +7,19 @@ import Testimonials from '../../components/sections/testimonials/testimonials';
 import EcoFriendly from '../../components/sections/eco-friendly/eco-friendly';
 import EcoFriendlyAds from '../../components/sections/eco-friendly-ads/eco-friendly-ads';
 import News from '../../components/sections/news/news';
-// import useFetchProducts from '../../components/fetch-products/fetch-products';
-
 
 const MainBody = () => {
-  // useFetchProducts();
 
   return (
     <>
-      <Hero/>
-      <AboutAds/>
-      <About/>
-      <Products/>
-      <Testimonials/>
-      <EcoFriendly/>
-      <EcoFriendlyAds/>
-      <News/>
+      <Hero />
+      <AboutAds />
+      <About />
+      <Products />
+      <Testimonials />
+      <EcoFriendly />
+      <EcoFriendlyAds />
+      <News />
     </>
   );
 };

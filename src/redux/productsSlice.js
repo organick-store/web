@@ -14,15 +14,16 @@ const productsSlice = createSlice({
   },
 });
 
-export const { addProducts } = productsSlice.actions;
+const { addProducts } = productsSlice.actions;
 
 export const productsReducer = productsSlice.reducer;
 
-export const fetchProducts = () => async (dispatch) => {
+export const getAllProducts = () => async (dispatch) => {
   try {
-    const response = await ProductService.fetchProducts();
+    const response = await ProductService.getAll();
     const products = response.data.products;
     dispatch(addProducts(products));
+    return Promise.resolve(products);
   } catch (e) {
     console.log(e);
   }

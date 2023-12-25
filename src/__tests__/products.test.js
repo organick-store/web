@@ -75,6 +75,21 @@ describe('Products component', () => {
     expect(product1Image).toBeDefined();
   });
 
+  test('renders "No products found" when there are no products', () => {
+    useSelector.mockReturnValue([]);
+
+    render(
+      <Provider store={store}>
+        <Products />
+      </Provider>,
+    );
+
+    const noProducts = screen.getByText('No products found');
+
+    expect(noProducts).toBeDefined();
+
+  });
+
   test('toggles showAll state when "Show More" button is clicked', () => {
     useSelector.mockReturnValue(mockProducts);
 

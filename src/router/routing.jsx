@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import ProtectedRoute from './protected-route';
 
 const Routing = ({ routes }) => {
   return (
@@ -9,7 +10,15 @@ const Routing = ({ routes }) => {
           <Route
             key={index}
             path={route.path}
-            element={route.element}
+            element={
+              <ProtectedRoute
+                redirectPath='/signup'
+                isProtected={route.isProtected}
+              >
+                {route.element}
+              </ProtectedRoute>
+            }
+
           />
         );
       })}

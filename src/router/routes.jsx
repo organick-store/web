@@ -10,35 +10,37 @@ import NotFound from '../pages/not-found/not-found';
 export const routes = [
   {
     path: '/',
-    exact: true,
     element: <MainBody />,
+    isProtected: true,
   },
   {
     path: '/cart',
-    exact: true,
     element: <CartBody />,
+    isProtected: true,
   },
   {
     path: '/success',
-    exact: true,
     element: <SuccessBanner />,
+    isProtected: true,
   },
   {
     path: '/signup',
-    exact: true,
     element: <Registration />,
+    isProtected: false,
   },
   {
     path: '/signin',
-    exact: true,
     element: <Login />,
+    isProtected: false,
   },
   {
     path: '/confirmemail/:token',
     element: <ActivateAccount />,
+    isProtected: false,
   },
   {
     path: '*',
     element: <NotFound />,
+    isProtected: false,
   },
 ];

@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/global.scss';
-import NavMenu from './components/sections/nav-menu/nav-menu';
+// import NavMenu from './components/sections/nav-menu/nav-menu';
 import Footer from './components/sections/footer/footer';
 import ScrollToTop from './hooks/scrollToTop';
 import useCheckAuth from './hooks/useCheckAuth';
@@ -14,11 +14,10 @@ const App = () => {
     <>
       <ScrollToTop />
       <div className='App'>
-        <NavMenu />
+
         <div className='Content'>
           <Routing routes={routes} />
         </div>
-        <Footer />
       </div>
     </>
   );

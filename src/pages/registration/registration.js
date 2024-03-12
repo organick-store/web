@@ -171,7 +171,7 @@ const Registration = () => {
         </form>
       ) : (
         <>
-          <Subheading>{registrationMessage}</Subheading>
+          <Subheading>{registrationResult.message}</Subheading>
           {registrationResult.success && <Paragraph>Please, confirm your email!</Paragraph>}
         </>
       )}

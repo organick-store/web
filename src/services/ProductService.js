@@ -2,6 +2,6 @@ import $api from '../http';
 
 export default class ProductService {
   static getAll() {
-    return $api.get('/products');
+    return $api.get('/api/product/all');
   }
 }

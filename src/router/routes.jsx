@@ -34,7 +34,7 @@ export const routes = [
     isProtected: false,
   },
   {
-    path: '/confirmemail/:token',
+    path: '/confirm/:token',
     element: <ActivateAccount />,
     isProtected: false,
   },

@@ -23,17 +23,14 @@ export const login = (email, password) => async (dispatch) => {
   try {
     const response = await AuthService.login(email, password);
     localStorage.setItem('token', response.data.token);
-    if (response.data.status === 'Success') {
-      dispatch(setAuth(true));
-      dispatch(
-        setUser({
-          email: response.data.email,
-          name: response.data.name,
-          address: response.data.address,
-        }),
-      );
-      return { message: 'Successfully authorized' };
-    }
+    dispatch(setAuth(true));
+    dispatch(
+      setUser({
+        email: response.data.email,
+        name: response.data.name,
+        address: response.data.address,
+      })
+    );
     return { message: response.data.message || 'Something went wrong' };
   } catch (e) {
     console.log(e);
@@ -51,18 +48,17 @@ export const registration =
         address,
       );
       localStorage.setItem('token', response.data.token);
-      if (response.data.status === 'Success') {
-        dispatch(setAuth(true));
-        dispatch(
-          setUser({
-            email: response.data.email,
-            name: response.data.name,
-            address: response.data.address,
-          }),
-        );
-        return { success: true, message: 'Registration successful.' };
-      }
-      return { success: false, message: 'Registration failed.' };
+      dispatch(setAuth(true));
+      dispatch(
+        setUser({
+          email: response.data.email,
+          name: response.data.name,
+          address: response.data.address,
+        }),
+      );
+      return { success: true, message: 'Registration successful.' };
+
+
     } catch (e) {
       console.error(e);
     }
@@ -90,14 +86,13 @@ export const refresh = () => async (dispatch) => {
   }
 };
 
-export const activate = async (token) => {
+export const activate = (token) => async () => {
   try {
     if (!token) return;
-    const response = await AuthService.activate(token);
-    if (response.data.status === 'Success') {
-      return { message: response.data.message };
-    }
-    return { message: response.data.message };
+
+    await AuthService.activate(token);
+
+    return { message: 'Account verified' };
   } catch (e) {
     console.log(e);
   }

@@ -16,7 +16,7 @@ import * as Yup from 'yup';
 
 const Registration = () => {
   const dispatch = useDispatch();
-  const [registrationStatus, setRegistrationStatus] = useState(false);
+  const [registrationMessage, setRegistrationMessage] = useState('');
 
   const initialValues = Yup.object({
     name: '',
@@ -70,7 +70,6 @@ const Registration = () => {
         values.address,
       ),
     );
-    setRegistrationStatus(status);
     setRegistrationMessage(message);
   };
 
@@ -86,7 +85,7 @@ const Registration = () => {
 
   return (
     <WidthContainer className={styles.container}>
-      {!registrationStatus ? (
+      {!registrationMessage ? (
         <form className={styles.form}>
           <Subheading className={styles['form-title']}>Registration</Subheading>
           <div className={styles.form__main}>

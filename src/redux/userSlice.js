@@ -60,31 +60,25 @@ export const registration =
 
 
     } catch (e) {
-      console.error(e);
+      return { success: false, message: 'Something went wrong' }
     }
   };
 
-export const refresh = () => async (dispatch) => {
+export const getCurrentUser = () => async (dispatch) => {
   try {
-    const token = localStorage.getItem('token');
-    if (!token) return;
-    const response = await AuthService.refresh(token);
-    if (response.data.status === 'Success') {
-      dispatch(setAuth(true));
-      dispatch(
-        setUser({
-          email: response.data.email,
-          name: response.data.name,
-          address: response.data.address,
-        }),
-      );
-    } else {
-      localStorage.removeItem('token');
-    }
+    const response = await AuthService.getCurrentUser();
+    dispatch(
+      setUser({
+        email: response.data.email,
+        name: response.data.name,
+        address: response.data.address,
+      }),
+    );
+    dispatch(setAuth(true));
   } catch (e) {
     console.log(e);
   }
-};
+}
 
 export const activate = (token) => async () => {
   try {
@@ -94,7 +88,7 @@ export const activate = (token) => async () => {
 
     return { message: 'Account verified' };
   } catch (e) {
-    console.log(e);
+    return { message: 'Something went wrong' };
   }
 };
 

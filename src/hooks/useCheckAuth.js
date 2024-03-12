@@ -1,17 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { refresh } from '../redux/userSlice';
+import { getCurrentUser } from '../redux/userSlice';
 
 const useCheckAuth = () => {
   const user = useSelector((state) => state.user);
-  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!user.isAuth) {
-      dispatch(refresh(token));
+      dispatch(getCurrentUser());
     }
-  }, [dispatch, user.isAuth, token]);
+  }, [dispatch, user.isAuth]);
 };
 
 export default useCheckAuth;

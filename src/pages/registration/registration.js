@@ -16,7 +16,7 @@ import * as Yup from 'yup';
 
 const Registration = () => {
   const dispatch = useDispatch();
-  const [registrationMessage, setRegistrationMessage] = useState('');
+  const [registrationResult, setRegistrationResult] = useState({ message: '', success: false });
 
   const initialValues = Yup.object({
     name: '',
@@ -61,7 +61,7 @@ const Registration = () => {
   const onSubmit = async (values) => {
     resetForm();
 
-    const { status, message } = await dispatch(
+    const res = await dispatch(
       registration(
         values.name,
         values.email,
@@ -70,7 +70,7 @@ const Registration = () => {
         values.address,
       ),
     );
-    setRegistrationMessage(message);
+    setRegistrationResult(res);
   };
 
   const resetForm = () => {
@@ -85,7 +85,7 @@ const Registration = () => {
 
   return (
     <WidthContainer className={styles.container}>
-      {!registrationMessage ? (
+      {!registrationResult.message ? (
         <form className={styles.form}>
           <Subheading className={styles['form-title']}>Registration</Subheading>
           <div className={styles.form__main}>
@@ -172,7 +172,7 @@ const Registration = () => {
       ) : (
         <>
           <Subheading>{registrationMessage}</Subheading>
-          <Paragraph>Please, confirm your email!</Paragraph>
+          {registrationResult.success && <Paragraph>Please, confirm your email!</Paragraph>}
         </>
       )}
     </WidthContainer>

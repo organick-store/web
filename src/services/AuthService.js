@@ -12,4 +12,8 @@ export default class AuthService {
   static async activate(token) {
     return $api.put(`/api/auth/confirm-email/${token}`);
   }
+
+  static async getCurrentUser() {
+    return $api.get('/api/auth/current-user');
+  }
 }

@@ -19,6 +19,7 @@ export const ModalProvider = ({ children }) => {
 
   const onClose = () => {
     setIsModalOpened(false);
+    setProduct({});
   };
 
   return (

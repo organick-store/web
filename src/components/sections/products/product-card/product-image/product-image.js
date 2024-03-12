@@ -5,10 +5,10 @@ import classNames from 'classnames';
 const ProductImg = ({ product, className }) => {
   return (
     <img
-      alt={product?.name || ''}
-      src={product?.image || ''}
+      src={product.image}
+      alt={product.name}
       className={classNames(styles.img, className)}
-    ></img>
+    />
   );
 };
 

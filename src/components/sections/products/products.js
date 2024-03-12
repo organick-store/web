@@ -20,7 +20,7 @@ const Products = () => {
 
   const isOverTotal = useMemo(() => {
     return productsData.products.length >= productsData.total;
-  }, [productsData.products, productsData.total]);
+  }, [productsData]);
 
   const showMore = () => {
     setFilters((prev) => ({ ...prev, limit: prev.limit + 8 }));

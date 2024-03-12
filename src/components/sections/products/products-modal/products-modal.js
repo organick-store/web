@@ -73,7 +73,7 @@ const ProductModal = ({ isOpen, onClose, product }) => {
         <WidthContainer className={styles['product__container']}>
           <div className={styles['product__details']}>
             <ProductImg
-              image={product?.image}
+              product={product}
               className={styles['product__details-img']}
             />
             <div className={styles['product__details-info']}>

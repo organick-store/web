@@ -21,7 +21,6 @@ export const productsReducer = productsSlice.reducer;
 export const getAllProducts = (filters) => async (dispatch) => {
   try {
     const response = await ProductService.getAll(filters);
-    console.log(response.data);
     dispatch(addProducts(response.data.products));
     return { products: response.data.products, total: response.data.count };
   } catch (e) {

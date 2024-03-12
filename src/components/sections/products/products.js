@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import ProductCard from './product-card/product-card';
 import { Subheading, Heading, Paragraph } from '../../UI/typography/typography';
 import Button from '../../UI/button/button';
@@ -10,23 +10,41 @@ import { getAllProducts } from '../../../redux/productsSlice';
 import ModalContext from '../../../context/product-modal';
 
 const Products = () => {
-  const [showAll, setShowAll] = useState(false);
+  const containerRef = useRef(null);
   const dispatch = useDispatch();
   const { onOpen: onOpenModal } = useContext(ModalContext);
   const counter = useSelector((state) => state.cart.cartCounter);
 
-  useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
+  const [filters, setFilters] = useState({ limit: 8, offset: 0 });
+  const [productsData, setProductsData] = useState({ products: [], total: 0 });
 
-  const productsData = useSelector((state) => state.products.productsList);
+  const isOverTotal = useMemo(() => {
+    return productsData.products.length >= productsData.total;
+  }, [productsData.products, productsData.total]);
 
-  const toggleShowAll = (e) => {
-    e.preventDefault();
-    setShowAll(!showAll);
+  const showMore = () => {
+    setFilters((prev) => ({ ...prev, limit: prev.limit + 8 }));
   };
 
-  const productsList = productsData.map((product) => (
+  const showLess = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+    setFilters((prev) => ({ ...prev, limit: prev.limit - 8 }));
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await dispatch(getAllProducts(filters));
+      setProductsData(response);
+    };
+    fetchData();
+  }, [dispatch, filters]);
+
+  const productsList = productsData.products.map((product) => (
     <ProductCard
       key={product.name}
       product={product}
@@ -40,19 +58,21 @@ const Products = () => {
         Categories
       </Subheading>
       <Heading className={styles['categories-heading']}>Our Products</Heading>
-      {productsData.length ? (
+      {productsData.products.length ? (
         <>
-          <WidthContainer className={styles['categories__container']}>
-            {showAll
-              ? productsList
-              : productsList.slice(0, productsData.length / 2)}
+          <WidthContainer>
+            <div className={styles['categories__container']} ref={containerRef}>
+              {productsList}
+            </div>
           </WidthContainer>
           <Button
             showArrow
-            onClick={toggleShowAll}
+            onClick={() => {
+              isOverTotal ? showLess() : showMore();
+            }}
             className={styles['categories-button']}
           >
-            {showAll ? 'Show Less' : 'Show More'}
+            {isOverTotal ? 'Show less' : 'Show more'}
           </Button>
         </>
       ) : (

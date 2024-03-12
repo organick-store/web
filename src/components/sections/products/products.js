@@ -39,6 +39,7 @@ const Products = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await dispatch(getAllProducts(filters));
+      console.log(response);
       setProductsData(response);
     };
     fetchData();

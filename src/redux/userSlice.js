@@ -24,13 +24,7 @@ export const login = (email, password) => async (dispatch) => {
     const response = await AuthService.login(email, password);
     localStorage.setItem('token', response.data.token);
     dispatch(setAuth(true));
-    dispatch(
-      setUser({
-        email: response.data.email,
-        name: response.data.name,
-        address: response.data.address,
-      })
-    );
+    dispatch(getCurrentUser());
     return { message: response.data.message || 'Something went wrong' };
   } catch (e) {
     console.log(e);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import WidthContainer from '../../components/UI/width-container/container';
 import styles from './login.module.scss';
 import { validators } from '../../utils/validators';
@@ -6,37 +6,44 @@ import { Subheading } from '../../components/UI/typography/typography';
 import { Input } from '../../components/UI/form-input/form-input';
 import Button from '../../components/UI/button/button';
 import { login } from '../../redux/userSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+
+const initialValues = {
+  email: '',
+  password: '',
+};
+
+const validationSchema = Yup.object({
+  email: Yup.string()
+    .required('Required field')
+    .test('email', 'Invalid email address', (value) =>
+      validators.emailValidator(value),
+    ),
+  password: Yup.string()
+    .required('Required field')
+    .test('password', 'Invalid password', (value) =>
+      validators.passwordValidator(value),
+    ),
+});
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const initialValues = {
-    email: '',
-    password: '',
-  };
+  const isAuth = useSelector((state) => state.user.isAuth);
 
-  const validationSchema = Yup.object({
-    email: Yup.string()
-      .required('Required field')
-      .test('email', 'Invalid email address', (value) =>
-        validators.emailValidator(value),
-      ),
-    password: Yup.string()
-      .required('Required field')
-      .test('password', 'Invalid password', (value) =>
-        validators.passwordValidator(value),
-      ),
-  });
+  useEffect(() => {
+    if (isAuth) {
+      navigate('/');
+    }
+  }, [isAuth])
 
   const onSubmit = (values) => {
     resetForm();
     dispatch(login(values.email, values.password));
-    navigate('/');
   };
 
   const resetForm = () => {

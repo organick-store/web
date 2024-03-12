@@ -26,10 +26,9 @@ const Order = () => {
   const createOrder = async () => {
     const orderData = {
       products: cart.map((product) => ({
-        name: product.name,
+        id: product.id,
         quantity: product.quantity,
       })),
-      token: localStorage.getItem('token'),
       totalCost: bill.price - bill.discount,
       totalDiscount: bill.discount,
       address: user.address,

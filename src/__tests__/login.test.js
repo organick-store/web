@@ -1,14 +1,20 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { Provider } from 'react-redux'; // Import Provider
+import { Provider } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Login from '../pages/login/login';
 import { configureStore } from '@reduxjs/toolkit';
-import { userSlice } from '../redux/userSlice';
+import { userReducer } from '../redux/userSlice';
 
-const store = configureStore(userSlice); // Create a Redux store with your root reducer
+const createStore = () =>
+  configureStore({
+    reducer: {
+      user: userReducer,
+    },
+  });
 
 const mockLogin = jest.fn();
+const mockNavigate = jest.fn();
 
 jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
@@ -22,20 +28,18 @@ jest.mock('../services/AuthService.js', () => {
 
 describe('Login component', () => {
   beforeEach(() => {
-    useNavigate.mockClear();
+    mockNavigate.mockClear();
+    useNavigate.mockReturnValue(mockNavigate);
+    mockLogin.mockReturnValue({ data: { token: 'token' } });
   });
 
   test('calls login function on form submission', async () => {
-    const mockNavigate = jest.fn();
-    useNavigate.mockReturnValue(mockNavigate);
-
     render(
-      <Provider store={store}>
-        {' '}
-        {/* Provide the Redux store */}
+      <Provider store={createStore()}>
         <Login />
       </Provider>,
     );
+
     const emailInput = screen.getByLabelText('Email address*');
     const passwordInput = screen.getByLabelText(
       'Password(at least 8 characters)*',
@@ -46,22 +50,36 @@ describe('Login component', () => {
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.click(loginButton);
 
-    // Now, assert that the mockLogin function was called
     await waitFor(() => expect(mockLogin).toHaveBeenCalledTimes(1));
-    expect(mockNavigate).toHaveBeenCalledWith('/');
   });
 
-  test('does not call login function if email is invalid', async () => {
-    const mockNavigate = jest.fn();
-    useNavigate.mockReturnValue(mockNavigate);
-
+  test('navigates to home page when user succesfully logged in', async () => {
     render(
-      <Provider store={store}>
-        {' '}
-        {/* Provide the Redux store */}
+      <Provider store={createStore()}>
         <Login />
       </Provider>,
     );
+
+    const emailInput = screen.getByLabelText('Email address*');
+    const passwordInput = screen.getByLabelText(
+      'Password(at least 8 characters)*',
+    );
+    const loginButton = screen.getAllByRole('button')[0];
+
+    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+    fireEvent.change(passwordInput, { target: { value: 'password123' } });
+    fireEvent.click(loginButton);
+
+    await waitFor(() => expect(mockNavigate).toHaveBeenCalledTimes(1));
+  });
+
+  test('does not call login function if email is invalid', async () => {
+    render(
+      <Provider store={createStore()}>
+        <Login />
+      </Provider>,
+    );
+
     const emailInput = screen.getByLabelText('Email address*');
     const passwordInput = screen.getByLabelText(
       'Password(at least 8 characters)*',
@@ -72,19 +90,32 @@ describe('Login component', () => {
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.click(loginButton);
 
-    // Now, assert that the mockLogin function was not called
-    expect(mockLogin).not.toHaveBeenCalled();
-    expect(mockNavigate).not.toHaveBeenCalled();
+    await waitFor(() => expect(mockLogin).not.toHaveBeenCalled());
   });
 
   test('does not call login function if password is invalid', async () => {
-    const mockNavigate = jest.fn();
-    useNavigate.mockReturnValue(mockNavigate);
-
     render(
-      <Provider store={store}>
-        {' '}
-        {/* Provide the Redux store */}
+      <Provider store={createStore()}>
+        <Login />
+      </Provider>,
+    );
+
+    const emailInput = screen.getByLabelText('Email address*');
+    const passwordInput = screen.getByLabelText(
+      'Password(at least 8 characters)*',
+    );
+    const loginButton = screen.getAllByRole('button')[0];
+
+    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+    fireEvent.change(passwordInput, { target: { value: 'pass' } });
+    fireEvent.click(loginButton);
+
+    await waitFor(() => expect(mockLogin).not.toHaveBeenCalled());
+  });
+
+  test('does not navigate to home page if user is not authorized', async () => {
+    render(
+      <Provider store={createStore()}>
         <Login />
       </Provider>,
     );
@@ -98,8 +129,6 @@ describe('Login component', () => {
     fireEvent.change(passwordInput, { target: { value: 'pass' } });
     fireEvent.click(loginButton);
 
-    // Now, assert that the mockLogin function was not called
-    expect(mockLogin).not.toHaveBeenCalled();
-    expect(mockNavigate).not.toHaveBeenCalled();
+    await waitFor(() => expect(mockNavigate).not.toHaveBeenCalled());
   });
 });

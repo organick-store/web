@@ -77,7 +77,9 @@ const ProductModal = ({ isOpen, onClose, product }) => {
               className={styles['product__details-img']}
             />
             <div className={styles['product__details-info']}>
-              <Heading className={styles['product-name']}>{product?.name}</Heading>
+              <Heading className={styles['product-name']}>
+                {product?.name}
+              </Heading>
               <Rating />
               <br />
               <ProductPrice product={product} />
@@ -106,7 +108,9 @@ const ProductModal = ({ isOpen, onClose, product }) => {
                   [styles['product__buttons--active']]:
                     productInfo.activeButton === 'desc-btn',
                 })}
-                onClick={() => handleButtonClick('desc-btn', product.description)}
+                onClick={() =>
+                  handleButtonClick('desc-btn', product.description)
+                }
               >
                 Product Description
               </Button>
@@ -115,7 +119,9 @@ const ProductModal = ({ isOpen, onClose, product }) => {
                   [styles['product__buttons--active']]:
                     productInfo.activeButton === 'add-btn',
                 })}
-                onClick={() => handleButtonClick('add-btn', product.additionalInfo)}
+                onClick={() =>
+                  handleButtonClick('add-btn', product.additionalInfo)
+                }
               >
                 Additional Info
               </Button>

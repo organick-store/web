@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-} from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 import Products from '../components/sections/products/products';
@@ -28,10 +23,9 @@ jest.mock('../services/ProductService.js', () => {
   };
 });
 
-jest.mock('../services/AuthService.js', () => { });
+jest.mock('../services/AuthService.js', () => {});
 
 describe('Products modal', () => {
-
   test('opens modal when product card is clicked', async () => {
     mockFetchProducts.mockResolvedValue({
       data: { products: generateMockProducts(1), count: 1 },

@@ -23,8 +23,8 @@ jest.mock('../services/OrderService.js', () => {
     createOrder: () => mockOrder(),
   };
 });
-jest.mock('../services/ProductService.js', () => { });
-jest.mock('../services/AuthService.js', () => { });
+jest.mock('../services/ProductService.js', () => {});
+jest.mock('../services/AuthService.js', () => {});
 
 describe('Order component', () => {
   beforeEach(() => {

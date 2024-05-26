@@ -9,7 +9,6 @@ import EcoFriendlyAds from '../../components/sections/eco-friendly-ads/eco-frien
 import News from '../../components/sections/news/news';
 
 const MainBody = () => {
-
   return (
     <>
       <Hero />

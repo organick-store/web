@@ -53,10 +53,7 @@ const Order = () => {
   };
 
   const OrderedProductsList = cart.map((product) => (
-    <OrderElement
-      key={product.id}
-      product={product}
-    />
+    <OrderElement key={product.id} product={product} />
   ));
 
   return (

@@ -6,18 +6,15 @@ import { ReactComponent as Rating } from '../../../../img/5-stars.svg';
 import ProductPrice from './product-price/product-price';
 import ProductImg from './product-image/product-image';
 
-const ProductCard = ({
-  product,
-  onOpenModal,
-}) => {
-
+const ProductCard = ({ product, onOpenModal }) => {
   return (
-    <div className={styles.product} onClick={onOpenModal} data-testid='product-card'>
+    <div
+      className={styles.product}
+      onClick={onOpenModal}
+      data-testid='product-card'
+    >
       <Button className={styles['product-tag']}>{product.type}</Button>
-      <ProductImg
-        product={product}
-        className={styles['product-img']}
-      />
+      <ProductImg product={product} className={styles['product-img']} />
       <div className={styles['product__description']}>
         <Heading className={styles['product__description-heading']}>
           {product.name}

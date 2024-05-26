@@ -18,7 +18,6 @@ const Routing = ({ routes }) => {
                 {route.element}
               </ProtectedRoute>
             }
-
           />
         );
       })}

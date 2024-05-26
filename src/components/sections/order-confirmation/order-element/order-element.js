@@ -17,26 +17,24 @@ const OrderElement = ({ product }) => {
 
   const inputQuantityHandler = (e) => {
     setInputQuantity(+e.target.value);
-    dispatch(setCartItemQuantity({ quantity: +e.target.value, id: product.id }));
+    dispatch(
+      setCartItemQuantity({ quantity: +e.target.value, id: product.id }),
+    );
   };
 
   const removeFromCartHandler = (e) => {
     e.preventDefault();
-    dispatch(removeItemFromCart({ id: product.id, quantity: product.quantity }));
+    dispatch(
+      removeItemFromCart({ id: product.id, quantity: product.quantity }),
+    );
   };
 
   return (
     <div className={styles['product']}>
-      <ProductImg
-        product={product}
-        className={styles['product-img']}
-      />
+      <ProductImg product={product} className={styles['product-img']} />
       <div className={styles['product-wrapper']}>
         <Heading className={styles['product-name']}>{product.name}</Heading>
-        <ProductPrice
-          className={styles['product-price']}
-          product={product}
-        />
+        <ProductPrice className={styles['product-price']} product={product} />
       </div>
       <ProductQuantityInput
         inputQuantity={inputQuantity}

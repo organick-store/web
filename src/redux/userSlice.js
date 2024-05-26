@@ -51,10 +51,8 @@ export const registration =
         }),
       );
       return { success: true, message: 'Registration successful.' };
-
-
     } catch (e) {
-      return { success: false, message: 'Something went wrong' }
+      return { success: false, message: 'Something went wrong' };
     }
   };
 
@@ -72,7 +70,7 @@ export const getCurrentUser = () => async (dispatch) => {
   } catch (e) {
     console.log(e);
   }
-}
+};
 
 export const activate = (token) => async () => {
   try {

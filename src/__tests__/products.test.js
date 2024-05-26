@@ -28,7 +28,7 @@ jest.mock('../services/ProductService.js', () => {
   };
 });
 
-jest.mock('../services/AuthService.js', () => { });
+jest.mock('../services/AuthService.js', () => {});
 
 describe('Products component', () => {
   test('renders products correctly', async () => {
@@ -138,6 +138,4 @@ describe('Products component', () => {
       screen.debug();
     });
   });
-
-
 });

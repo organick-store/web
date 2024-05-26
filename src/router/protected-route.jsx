@@ -5,7 +5,7 @@ import Footer from '../components/sections/footer/footer';
 import { useSelector } from 'react-redux';
 
 const ProtectedRoute = ({ redirectPath, children, isProtected }) => {
-  const isAuth = useSelector(state => state.user.isAuth)
+  const isAuth = useSelector((state) => state.user.isAuth);
 
   // If the route is protected and the user is not authenticated, redirect
   if (isProtected && !isAuth) {
@@ -18,7 +18,6 @@ const ProtectedRoute = ({ redirectPath, children, isProtected }) => {
       <NavMenu />
       {children}
       <Footer />
-
     </>
   ) : (
     <>{children}</>

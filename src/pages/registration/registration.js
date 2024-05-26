@@ -16,7 +16,10 @@ import * as Yup from 'yup';
 
 const Registration = () => {
   const dispatch = useDispatch();
-  const [registrationResult, setRegistrationResult] = useState({ message: '', success: false });
+  const [registrationResult, setRegistrationResult] = useState({
+    message: '',
+    success: false,
+  });
 
   const initialValues = Yup.object({
     name: '',
@@ -145,8 +148,11 @@ const Registration = () => {
             />
             <Input
               name='retypePassword'
-              invalid={formik.touched.retypePassword && formik.errors.retypePassword
-                || formik.values.retypePassword !== formik.values.password}
+              invalid={
+                (formik.touched.retypePassword &&
+                  formik.errors.retypePassword) ||
+                formik.values.retypePassword !== formik.values.password
+              }
               value={formik.values.retypePassword}
               label={'Retype password*'}
               inptType={'password'}
@@ -172,7 +178,9 @@ const Registration = () => {
       ) : (
         <>
           <Subheading>{registrationResult.message}</Subheading>
-          {registrationResult.success && <Paragraph>Please, confirm your email!</Paragraph>}
+          {registrationResult.success && (
+            <Paragraph>Please, confirm your email!</Paragraph>
+          )}
         </>
       )}
     </WidthContainer>

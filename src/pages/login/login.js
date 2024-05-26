@@ -39,7 +39,7 @@ const Login = () => {
     if (isAuth) {
       navigate('/');
     }
-  }, [isAuth])
+  }, [isAuth]);
 
   const onSubmit = (values) => {
     resetForm();
@@ -58,7 +58,7 @@ const Login = () => {
 
   return (
     <WidthContainer>
-      <form className={styles.form} >
+      <form className={styles.form}>
         <Subheading className={styles['form-title']}>Login</Subheading>
         <div className={styles.form__main}>
           <Input

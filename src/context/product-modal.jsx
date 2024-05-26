@@ -1,4 +1,4 @@
-import React, {createContext, useState} from "react";
+import React, { createContext, useState } from 'react';
 import ProductModal from '../components/sections/products/products-modal/products-modal';
 import ProductBackdrop from '../components/sections/products/products-modal/product-backdrop';
 
@@ -23,8 +23,12 @@ export const ModalProvider = ({ children }) => {
   };
 
   return (
-    <ModalContext.Provider value={{onOpen}}>
-      <ProductModal isOpen={isModalOpened} onClose={onClose} product={product}/>
+    <ModalContext.Provider value={{ onOpen }}>
+      <ProductModal
+        isOpen={isModalOpened}
+        onClose={onClose}
+        product={product}
+      />
       {isModalOpened && <ProductBackdrop onClose={onClose} />}
       {children}
     </ModalContext.Provider>

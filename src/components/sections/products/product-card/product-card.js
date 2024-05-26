@@ -12,7 +12,7 @@ const ProductCard = ({
 }) => {
 
   return (
-    <div className={styles.product} onClick={onOpenModal}>
+    <div className={styles.product} onClick={onOpenModal} data-testid='product-card'>
       <Button className={styles['product-tag']}>{product.type}</Button>
       <ProductImg
         product={product}

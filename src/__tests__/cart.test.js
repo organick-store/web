@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import store from '../redux/store';
 import Order from '../components/sections/order-confirmation/order-confirmation';
-// import OrderService from '../services/OrderService';
 
 const mockOrder = jest.fn();
 
@@ -24,8 +23,8 @@ jest.mock('../services/OrderService.js', () => {
     createOrder: () => mockOrder(),
   };
 });
-jest.mock('../services/ProductService.js', () => {});
-jest.mock('../services/AuthService.js', () => {});
+jest.mock('../services/ProductService.js', () => { });
+jest.mock('../services/AuthService.js', () => { });
 
 describe('Order component', () => {
   beforeEach(() => {

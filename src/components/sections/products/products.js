@@ -28,7 +28,7 @@ const Products = () => {
 
   const showLess = () => {
     if (containerRef.current) {
-      containerRef.current.scrollIntoView({
+      containerRef.current.scrollIntoView?.({
         behavior: 'smooth',
         block: 'start',
       });
@@ -39,7 +39,6 @@ const Products = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await dispatch(getAllProducts(filters));
-      console.log(response);
       setProductsData(response);
     };
     fetchData();
